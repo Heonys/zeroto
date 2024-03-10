@@ -1,15 +1,43 @@
-import GoogleProvider from "next-auth/providers/google";
+import GithubProvider from "next-auth/providers/github";
+import { MongoDBAdapter } from "@auth/mongodb-adapter";
+import clientPromise from "@/db/clientPromise";
+import type { Adapter } from "next-auth/adapters";
 import { AuthOptions } from "next-auth";
 
 const authOption: AuthOptions = {
+  adapter: MongoDBAdapter(clientPromise) as Adapter,
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    GithubProvider({
+      clientId: process.env.GITHUB_ID!,
+      clientSecret: process.env.GITHUB_SECRET!,
+      profile(profile) {
+        return {
+          id: profile.id.toString(),
+          name: profile.name || profile.login,
+          email: profile.email,
+          image: profile.avatar_url,
+          username: profile.login,
+        };
+      },
     }),
   ],
-  session: {
-    strategy: "jwt",
+  secret: process.env.NEXTAUTH_SECRET,
+
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      return true;
+    },
+
+    async session({ session, user }) {
+      const modifiedUser = session?.user;
+      if (modifiedUser) {
+        session.user = {
+          ...user,
+          username: user.username,
+        };
+      }
+      return session;
+    },
   },
 };
 

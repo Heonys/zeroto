@@ -1,7 +1,15 @@
-import { Avatar, Box, DropdownMenu, Flex, Text } from "@radix-ui/themes";
+import {
+  Avatar,
+  Box,
+  Button,
+  DropdownMenu,
+  Flex,
+  Text,
+} from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { MenuIcon, LoginIcon } from "./icon";
 
 const AuthStatus = () => {
   const { data: session, status } = useSession();
@@ -9,7 +17,18 @@ const AuthStatus = () => {
 
   //   if (status === "loading") return <Skeletom width="3rem" />;
   if (status === "unauthenticated")
-    return <Link href="/api/auth/signin">로그인</Link>;
+    return (
+      <Box className="p-2">
+        <Flex>
+          <Link href="/api/auth/signin">
+            <Button variant="outline" radius="large" highContrast>
+              <LoginIcon size={20} />
+              <Text size="2">Sign in</Text>
+            </Button>
+          </Link>
+        </Flex>
+      </Box>
+    );
 
   const handleClick = async () => {
     router.push("/api/auth/signout");
@@ -20,18 +39,13 @@ const AuthStatus = () => {
   }
 
   return (
-    <Box>
-      <Flex align="center" gap="2">
+    <Box className="bg-white p-1 rounded-3xl">
+      <Flex align="center" gap="1">
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
-            <Avatar
-              src={session!.user!.image!}
-              fallback="?"
-              size="2"
-              radius="full"
-              className="cursor-pointer"
-              referrerPolicy="no-referrer"
-            />
+            <Flex align="center" gap="1">
+              <MenuIcon size={20} />
+            </Flex>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
             <DropdownMenu.Label>
@@ -42,7 +56,17 @@ const AuthStatus = () => {
             </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Root>
-        <Text size="2">{session!.user!.name}님 환영합니다</Text>
+        <Avatar
+          src={session!.user!.image!}
+          fallback="?"
+          size="2"
+          radius="full"
+          className="cursor-pointer"
+          referrerPolicy="no-referrer"
+        />
+        <Text size="2" weight="bold">
+          {session!.user!.name}
+        </Text>
       </Flex>
     </Box>
   );

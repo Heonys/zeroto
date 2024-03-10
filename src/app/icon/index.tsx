@@ -8,3 +8,5 @@ export { MdMenu as MenuIcon } from "react-icons/md";
 export { FaRegStar as StarIcon } from "react-icons/fa6";
 export { MdPeople as PeopleIcon } from "react-icons/md";
 export { FaLocationDot as LocatoinIcon } from "react-icons/fa6";
+export { FaAngleDown as DownIcon } from "react-icons/fa6";
+export { IoLogInOutline as LoginIcon } from "react-icons/io5";
