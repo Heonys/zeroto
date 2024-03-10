@@ -9,6 +9,7 @@ import {
   DashboardIcon,
   DocumentIcon,
   SettingIcon,
+  StarIcon,
 } from "./icon";
 
 const Navbar = () => {
@@ -36,6 +37,7 @@ const NavLinks = () => {
     { label: <HomeIcon size={25} />, href: "/" },
     { label: <DocumentIcon size={25} />, href: "/docs" },
     { label: <DashboardIcon size={25} />, href: "/dashboard" },
+    { label: <StarIcon size={25} />, href: "/favorite" },
     { label: <SettingIcon size={25} />, href: "/setting" },
   ];
 
