@@ -1,45 +1,51 @@
-import { RepositoryIcon, CommitIcon, AlertIcon } from "@/app/icon";
+import {
+  RepositoryIcon,
+  CommitIcon,
+  AlertIcon,
+  ForkIcon,
+  StarIcon,
+} from "@/app/icon";
 import { Box, Card, Flex, Text } from "@radix-ui/themes";
 import Link from "next/link";
 
 type Props = {
-  open: number;
-  inProgress: number;
-  closed: number;
-  starred?: number;
-  repos?: number;
+  commit: number;
+  lssue: number;
+  star: number;
+  fork: number;
 };
 
-const IssueSummary = ({ open, closed, inProgress }: Props) => {
+const IssueSummary = ({ commit, lssue, star, fork }: Props) => {
   const statuses: {
     label: string;
     value: number;
-    status: string;
     icon: React.ReactNode;
   }[] = [
     {
       label: "Commit",
-      value: open,
-      status: "OPEN",
+      value: commit,
       icon: <CommitIcon size={25} />,
     },
     {
       label: "Issue",
-      value: inProgress,
-      status: "IN_PROGRESS",
+      value: lssue,
       icon: <AlertIcon size={25} />,
     },
     {
-      label: "Repository",
-      value: closed,
-      status: "CLOSED",
-      icon: <RepositoryIcon size={25} />,
+      label: "Star",
+      value: star,
+      icon: <StarIcon size={22} />,
+    },
+    {
+      label: "Fork",
+      value: fork,
+      icon: <ForkIcon size={24} />,
     },
   ];
 
   return (
     <Flex gap="4">
-      {statuses.map(({ value, label, status, icon }) => {
+      {statuses.map(({ value, label, icon }) => {
         return (
           <Card key={label} className="grow">
             <Flex align="center" justify="between">
