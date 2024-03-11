@@ -13,7 +13,7 @@ const Navbar = () => {
           <TextField.Slot>
             <SearchIcon size={15} />
           </TextField.Slot>
-          <TextField.Input size="2" placeholder="Search Github User" />
+          <TextField.Input size="2" placeholder="Search Github ID" />
           <TextField.Slot>
             <IconButton size="1" variant="ghost">
               <Kbd>Enter</Kbd>

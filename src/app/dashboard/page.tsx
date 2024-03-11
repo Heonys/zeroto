@@ -1,8 +1,19 @@
 "use client";
 import Image from "next/image";
-import Profile from "/public/profile.png";
-import { PeopleIcon, LocatoinIcon } from "../icon";
+import {
+  PeopleIcon,
+  LocatoinIcon,
+  CalendarIcon,
+  UpdateIcon,
+  WebIcon,
+} from "../icon";
 import useMe from "@/hooks/useMe";
+import Chart from "./_comoonents/Chart";
+import { Flex, Grid } from "@radix-ui/themes";
+import IssueSummary from "./_comoonents/Summary";
+import LatestRepos from "./_comoonents/LatestRepos";
+import Graph from "./_comoonents/Graph";
+import Link from "next/link";
 
 const DashboardPage = () => {
   const {
@@ -11,12 +22,9 @@ const DashboardPage = () => {
 
   if (isLoading) return null;
 
-  console.log(data);
-
-  // "https://avatars.githubusercontent.com/u/63222205?v=4"
   return (
     <div className="w-full h-full">
-      <div className="absolute  w-[18vw] left-[3vw] top-[10vh] bg-white flex flex-col items-start">
+      <div className="absolute  w-[19vw] left-[3vw] top-[10vh] bg-white flex flex-col items-start">
         <div className="border-2 border-gray-300 rounded-full overflow-hidden">
           <Image
             src={data?.avatar_url!}
@@ -37,9 +45,41 @@ const DashboardPage = () => {
             <LocatoinIcon size={15} />
             <div>{data?.location}</div>
           </div>
+          <div className="flex space-x-2 items-center">
+            <CalendarIcon size={18} />
+            <div>Joined GitHub 12560 days ago</div>
+          </div>
+          <div className="flex space-x-2 items-center">
+            <UpdateIcon size={20} />
+            <div>Last updated 1 days ago</div>
+          </div>
+          <div className="flex space-x-2 items-center">
+            <WebIcon size={20} />
+            <Link href={"/#"} className="underline decoration-1">
+              View profile on GitHub
+            </Link>
+          </div>
         </div>
       </div>
-      <div className="relative bg-blue-100 opacity-50 left-[23vw] w-[69vw] h-[82vh]"></div>
+
+      {/* 
+        자주 사용하는 언어 및 비율 
+        잔디 그리기 -> 모든 저장소 가져와서 
+        실제 깃허브에서 보기
+        starred 이건 favorite 페이지에서 
+        activity
+        
+        */}
+      <div className="relative left-[23vw] w-[69vw] h-[82vh]">
+        <Grid columns="2" gap="5">
+          <Flex direction="column" gap="5">
+            <IssueSummary open={1} inProgress={5} closed={3} />
+            <Chart open={1} inProgress={5} closed={3} />
+          </Flex>
+          <LatestRepos />
+        </Grid>
+        <Graph />
+      </div>
     </div>
   );
 };

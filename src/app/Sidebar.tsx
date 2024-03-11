@@ -10,7 +10,9 @@ import {
   DocumentIcon,
   SettingIcon,
   StarIcon,
+  FriendsIcon,
 } from "./icon";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
   return (
@@ -33,26 +35,25 @@ const Navbar = () => {
 export default Navbar;
 
 const NavLinks = () => {
+  const currentPath = usePathname();
+  const { data: session, status } = useSession();
+
   const links = [
     { label: <HomeIcon size={25} />, href: "/" },
     { label: <DocumentIcon size={25} />, href: "/docs" },
-    { label: <DashboardIcon size={25} />, href: "/dashboard" },
+    ...(status === "authenticated"
+      ? [{ label: <DashboardIcon size={25} />, href: "/dashboard" }]
+      : []),
+    { label: <FriendsIcon size={25} />, href: "/search" },
     { label: <StarIcon size={25} />, href: "/favorite" },
     { label: <SettingIcon size={25} />, href: "/setting" },
   ];
 
-  const currentPath = usePathname();
   return (
     <ul className="flex flex-col space-y-3">
       {links.map(({ href, label }) => {
         return (
-          <Link
-            // className={`${
-            //   href === currentPath ? "text-zinc-900 " : "text-zinc-500"
-            // } text-zinc-500 hover:text-zinc-900 transition-colors`}
-            key={href}
-            href={href}
-          >
+          <Link key={href} href={href}>
             <div
               className={`
             rounded-full border-gray-300 border p-2

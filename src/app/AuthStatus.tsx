@@ -15,7 +15,6 @@ const AuthStatus = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  //   if (status === "loading") return <Skeletom width="3rem" />;
   if (status === "unauthenticated")
     return (
       <Box className="p-2">
@@ -40,7 +39,7 @@ const AuthStatus = () => {
 
   return (
     <Box className="bg-white p-1 rounded-3xl">
-      <Flex align="center" gap="1">
+      <Flex align="center" gap="1" className="px-1">
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
             <Flex align="center" gap="1">
