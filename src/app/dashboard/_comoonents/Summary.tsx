@@ -6,7 +6,6 @@ import {
   StarIcon,
 } from "@/app/icon";
 import { Box, Card, Flex, Text } from "@radix-ui/themes";
-import Link from "next/link";
 
 type Props = {
   commit: number;

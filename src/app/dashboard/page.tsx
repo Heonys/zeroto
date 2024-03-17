@@ -15,7 +15,6 @@ import RepositoryGrid from "./_comoonents/RepositoryGrid";
 import Graph from "./_comoonents/Graph";
 import Link from "next/link";
 import { format } from "timeago.js";
-import { getCommitByURL } from "@/api/github";
 
 const DashboardPage = () => {
   const {
@@ -84,7 +83,7 @@ const DashboardPage = () => {
         </div>
       </div>
 
-      <div className="relative left-[23vw] w-[69vw] h-[82vh]">
+      <div className="relative left-[23vw] w-[69vw] ">
         <Grid columns="2" gap="5">
           <Flex direction="column" gap="5">
             <IssueSummary
@@ -95,9 +94,10 @@ const DashboardPage = () => {
             />
             <Chart open={1} inProgress={5} closed={3} />
           </Flex>
-          <RepositoryGrid RepositoryData={data?.repositoryData || []} />
+          <RepositoryGrid repositoryData={data?.repositoryData || []} />
         </Grid>
-        {/* <Graph /> */}
+
+        <Graph />
       </div>
     </div>
   );

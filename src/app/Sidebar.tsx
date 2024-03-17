@@ -45,7 +45,6 @@ const NavLinks = () => {
       ? [{ label: <DashboardIcon size={25} />, href: "/dashboard" }]
       : []),
     { label: <FriendsIcon size={25} />, href: "/search" },
-    { label: <StarIcon size={25} />, href: "/favorite" },
     { label: <SettingIcon size={25} />, href: "/setting" },
   ];
 
