@@ -18,3 +18,4 @@ export { RiPushpinLine as CommitIcon } from "react-icons/ri";
 export { IoAlertCircleOutline as AlertIcon } from "react-icons/io5";
 export { CgWebsite as WebIcon } from "react-icons/cg";
 export { PiGitFork as ForkIcon } from "react-icons/pi";
+export { FaRegBell as BellIcon } from "react-icons/fa6";

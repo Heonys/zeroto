@@ -7,29 +7,28 @@ import {
   UpdateIcon,
   WebIcon,
 } from "../icon";
-import useMe from "@/hooks/useMe";
-import Chart from "./_comoonents/Chart";
+import type { Repos } from "@/hooks/useMe";
+import Chart from "./dashboard/Chart";
 import { Flex, Grid } from "@radix-ui/themes";
-import IssueSummary from "./_comoonents/Summary";
-import RepositoryGrid from "./_comoonents/RepositoryGrid";
-import Graph from "./_comoonents/Graph";
+import IssueSummary from "./dashboard/Summary";
+import RepositoryGrid from "./dashboard/RepositoryGrid";
+import Graph from "./dashboard/Graph";
 import Link from "next/link";
 import { format } from "timeago.js";
+import { GithubURL } from "@/types/user";
 
-const DashboardPage = () => {
-  const {
-    userQuery: { data: user, isLoading },
-    repositoryQuery: { data },
-  } = useMe();
+type Props = {
+  user?: GithubURL;
+  repos?: Repos;
+};
 
-  if (isLoading) return null;
-
-  const forkCount = data?.repositoryData.reduce(
+const Dashboard = ({ user, repos }: Props) => {
+  const forkCount = repos?.repositoryData.reduce(
     (acc, cur) => acc + cur.forks_count,
     0,
   );
 
-  const stargazersCount = data?.repositoryData?.reduce(
+  const stargazersCount = repos?.repositoryData?.reduce(
     (acc, cur) => acc + cur.stargazers_count,
     0,
   );
@@ -52,10 +51,6 @@ const DashboardPage = () => {
             <PeopleIcon size={18} />
             <div>{user?.followers} followers</div>
             <div>{user?.following} follwing</div>
-          </div>
-          <div className="flex space-x-2 items-center">
-            <LocatoinIcon size={15} />
-            <div>{user?.location}</div>
           </div>
           <div className="flex space-x-2 items-center">
             <CalendarIcon size={18} />
@@ -87,20 +82,20 @@ const DashboardPage = () => {
         <Grid columns="2" gap="5">
           <Flex direction="column" gap="5">
             <IssueSummary
-              commit={data?.commitCount || 0}
+              commit={repos?.commitCount || 0}
               fork={forkCount || 0}
-              lssue={data?.issueCount || 0}
+              lssue={repos?.issueCount || 0}
               star={stargazersCount || 0}
             />
             <Chart open={1} inProgress={5} closed={3} />
           </Flex>
-          <RepositoryGrid repositoryData={data?.repositoryData || []} />
+          <RepositoryGrid repositoryData={repos?.repositoryData || []} />
         </Grid>
 
-        <Graph />
+        <Graph username={user?.login || ""} />
       </div>
     </div>
   );
 };
 
-export default DashboardPage;
+export default Dashboard;

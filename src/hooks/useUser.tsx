@@ -1,24 +1,38 @@
-import { getCommitByURL, getIssueByURL } from "@/api/github";
 import { GithubRepositorys, GithubURL } from "@/types/user";
 import { useQuery } from "@tanstack/react-query";
+import { Repos } from "./useMe";
+import { getCommitByURL, getIssueByURL } from "@/api/github";
+import { useSetRecoilState } from "recoil";
+import { userSelector } from "@/atom/userAtom";
 
-export type Repos = {
-  repositoryData: GithubRepositorys[];
-  commitCount: number;
-  issueCount: number;
-};
+const useUser = (username: string) => {
+  const setSearch = useSetRecoilState(userSelector);
 
-const useMe = () => {
   const userQuery = useQuery<GithubURL>({
-    queryKey: ["me"],
-    queryFn: () => fetch("/api/me").then((res) => res.json()),
+    enabled: !!username,
+    queryKey: [username],
+    queryFn: () =>
+      fetch(`/api/user/${username}`)
+        .then((res) => res.json())
+        .then((user) => {
+          setSearch((prev) => [
+            ...prev,
+            {
+              username: user.login,
+              html_for: user.html_url,
+              avatar_url: user.avatar_url,
+            },
+          ]);
+          return user;
+        }),
   });
 
   const repositoryQuery = useQuery<Repos>({
-    queryKey: ["me", "repos"],
+    enabled: !!username,
+    queryKey: [username, "repos"],
     queryFn: async () => {
       const repositoryData: GithubRepositorys[] = await fetch(
-        "/api/me/repos",
+        `/api/user/${username}/repos`,
       ).then((res) => res.json());
 
       const commitCount = (
@@ -46,4 +60,4 @@ const useMe = () => {
   return { userQuery, repositoryQuery };
 };
 
-export default useMe;
+export default useUser;

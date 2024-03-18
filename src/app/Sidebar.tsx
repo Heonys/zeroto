@@ -9,7 +9,6 @@ import {
   DashboardIcon,
   DocumentIcon,
   SettingIcon,
-  StarIcon,
   FriendsIcon,
 } from "./icon";
 import { useSession } from "next-auth/react";
@@ -25,7 +24,6 @@ const Navbar = () => {
             </Link>
             <NavLinks />
           </Flex>
-          {/* <AuthStatus /> */}
         </Flex>
       </Container>
     </div>
@@ -36,13 +34,14 @@ export default Navbar;
 
 const NavLinks = () => {
   const currentPath = usePathname();
+
   const { data: session, status } = useSession();
 
   const links = [
     { label: <HomeIcon size={25} />, href: "/" },
     { label: <DocumentIcon size={25} />, href: "/docs" },
     ...(status === "authenticated"
-      ? [{ label: <DashboardIcon size={25} />, href: "/dashboard" }]
+      ? [{ label: <DashboardIcon size={25} />, href: "/me" }]
       : []),
     { label: <FriendsIcon size={25} />, href: "/search" },
     { label: <SettingIcon size={25} />, href: "/setting" },

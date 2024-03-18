@@ -7,6 +7,7 @@ import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import AuthProvider from "./api/auth/Provider";
 import QueryClientProvider from "./QueryClientProvider";
+import RecoilProvider from "./RecoilProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,21 +25,23 @@ export default function RootLayout({
     <html lang="en" className={inter.className}>
       <body className="bg-[#f3efee]">
         <Theme>
-          <QueryClientProvider>
-            <AuthProvider>
-              <div className="flex items-center ">
-                <div className="self-start pl-2 mt-2">
-                  <Sidebar />
-                </div>
-                <main className="ml-4 mr-5 mt-2 flex-1 flex flex-col pt-2">
-                  <Navbar />
-                  <div className="p-2 mt-2 rounded-3xl border-2 shadow-xl h-[85vh] bg-white relative">
-                    {children}
+          <AuthProvider>
+            <RecoilProvider>
+              <QueryClientProvider>
+                <div className="flex items-center ">
+                  <div className="self-start pl-2 mt-2">
+                    <Sidebar />
                   </div>
-                </main>
-              </div>
-            </AuthProvider>
-          </QueryClientProvider>
+                  <main className="ml-4 mr-5 mt-2 flex-1 flex flex-col pt-2">
+                    <Navbar />
+                    <div className="p-2 mt-2 rounded-3xl border-2 shadow-xl h-[85vh] bg-white relative">
+                      {children}
+                    </div>
+                  </main>
+                </div>
+              </QueryClientProvider>
+            </RecoilProvider>
+          </AuthProvider>
         </Theme>
       </body>
     </html>
