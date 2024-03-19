@@ -11,10 +11,13 @@ const useUser = (username: string) => {
   const userQuery = useQuery<GithubURL>({
     enabled: !!username,
     queryKey: [username],
-    queryFn: () =>
-      fetch(`/api/user/${username}`)
-        .then((res) => res.json())
-        .then((user) => {
+    queryFn: async () => {
+      const response = await fetch(`/api/user/${username}`);
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      } else {
+        return response.json().then((user) => {
           setSearch((prev) => [
             ...prev,
             {
@@ -24,22 +27,28 @@ const useUser = (username: string) => {
             },
           ]);
           return user;
-        }),
+        });
+      }
+    },
   });
 
   const repositoryQuery = useQuery<Repos>({
     enabled: !!username,
     queryKey: [username, "repos"],
     queryFn: async () => {
-      const repositoryData: GithubRepositorys[] = await fetch(
-        `/api/user/${username}/repos`,
-      ).then((res) => res.json());
+      const response = await fetch(`/api/user/${username}/repos`);
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      } else {
+      }
+      const repositoryData: GithubRepositorys[] = await response.json();
 
       const commitCount = (
         await Promise.all(
           repositoryData.map(async (repo) => {
             const data = await getCommitByURL(repo.commits_url);
-            return data.length;
+            return data.length || 0;
           }),
         )
       ).reduce((acc, cur) => acc + +cur, 0);

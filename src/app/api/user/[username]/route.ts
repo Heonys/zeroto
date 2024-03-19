@@ -6,6 +6,7 @@ type Context = {
 };
 
 export async function GET(req: NextRequest, context: Context) {
-  const data = await getUserByUsername(context.params.username);
-  return NextResponse.json(data);
+  return getUserByUsername(context.params.username)
+    .then((res) => NextResponse.json(res))
+    .catch((err) => new Response(JSON.stringify(err), { status: 500 }));
 }

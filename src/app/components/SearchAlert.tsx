@@ -1,24 +1,12 @@
 "use client";
-import { Flex, IconButton, Kbd, Text, TextField } from "@radix-ui/themes";
+import { Flex, Text } from "@radix-ui/themes";
 import LogoIcon from "./LogoIcon";
-import { BellIcon, SearchIcon } from "../icon";
+import { BellIcon } from "../icon";
 import Github from "../../../public/github.webp";
 import Image from "next/image";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import Search from "./Search";
 
 const SearchAlert = () => {
-  const [username, setUsername] = useState("");
-  const router = useRouter();
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
-  };
-
-  const handleClickEnter = () => {
-    router.push(`/search?username=${username}`);
-  };
-
   return (
     <Flex
       justify="center"
@@ -28,25 +16,7 @@ const SearchAlert = () => {
       className="max-w-[60vw] m-auto mt-4"
     >
       <LogoIcon />
-      <TextField.Root className="w-[50%]">
-        <TextField.Slot>
-          <SearchIcon />
-        </TextField.Slot>
-        <TextField.Input
-          size="2"
-          placeholder="Search GitHub"
-          className="w-full"
-          radius="large"
-          value={username}
-          onChange={handleChange}
-        />
-        <TextField.Slot>
-          <IconButton size="1" variant="ghost" onClick={handleClickEnter}>
-            <Kbd>Enter</Kbd>
-          </IconButton>
-        </TextField.Slot>
-      </TextField.Root>
-
+      <Search />
       <Flex align="center" gap="2">
         <BellIcon size={15} color="#926715" />
         <Text className="text-[#647389]">

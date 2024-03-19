@@ -10,32 +10,35 @@ import {
 } from "recharts";
 
 type Props = {
-  open: number;
-  inProgress: number;
-  closed: number;
+  commit: number;
+  issue: number;
+  star: number;
+  fork: number;
 };
 
-const Chart = ({ open, inProgress, closed }: Props) => {
+const Chart = ({ commit, issue, star, fork }: Props) => {
+  const total = commit + issue + star + fork;
+
   const data = [
     {
       subject: "Commit",
-      A: 120,
-      fullMark: 150,
+      A: commit,
+      fullMark: total,
     },
     {
       subject: "Issue",
-      A: 98,
-      fullMark: 150,
+      A: total / 10 + issue,
+      fullMark: 100,
     },
     {
       subject: "Star",
-      A: 5,
-      fullMark: 50,
+      A: total / 10 + star,
+      fullMark: 100,
     },
     {
       subject: "Fork",
-      A: 15,
-      fullMark: 50,
+      A: total / 10 + fork,
+      fullMark: 100,
     },
   ];
 
@@ -45,7 +48,7 @@ const Chart = ({ open, inProgress, closed }: Props) => {
         <RadarChart outerRadius={90} width={730} height={250} data={data}>
           <PolarGrid />
           <PolarAngleAxis dataKey="subject" />
-          <PolarRadiusAxis angle={30} domain={[0, 150]} />
+          <PolarRadiusAxis angle={30} />
           <Radar
             dataKey="A"
             // stroke="#d82e5a"

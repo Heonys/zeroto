@@ -17,17 +17,14 @@ export const userSelector = selector({
     const users = get(userAtom);
     const newUser = (newUsers as User[]).at(-1);
 
-    console.log("기존 ::", users);
-    console.log("새로운 값 ::", newUser);
-
     const userExists = users.some(
       (user) => user.username === newUser?.username,
     );
 
     if (userExists) {
-      set(userAtom, users);
+      set(userAtom, users.slice(-5));
     } else {
-      set(userAtom, newUsers);
+      set(userAtom, (newUsers as User[]).slice(-5));
     }
   },
 });

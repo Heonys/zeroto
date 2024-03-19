@@ -1,6 +1,7 @@
 "use client";
 import useMe from "@/hooks/useMe";
 import Dashboard from "../components/Dashboard";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const MyDashboardPage = () => {
   const {
@@ -8,7 +9,7 @@ const MyDashboardPage = () => {
     repositoryQuery: { data },
   } = useMe();
 
-  if (isLoading) return null;
+  if (isLoading) return <LoadingSpinner />;
 
   return <Dashboard user={user} repos={data} />;
 };

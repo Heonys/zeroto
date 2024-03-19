@@ -1,12 +1,6 @@
 "use client";
 import Image from "next/image";
-import {
-  PeopleIcon,
-  LocatoinIcon,
-  CalendarIcon,
-  UpdateIcon,
-  WebIcon,
-} from "../icon";
+import { PeopleIcon, CalendarIcon, UpdateIcon, WebIcon } from "../icon";
 import type { Repos } from "@/hooks/useMe";
 import Chart from "./dashboard/Chart";
 import { Flex, Grid } from "@radix-ui/themes";
@@ -16,6 +10,8 @@ import Graph from "./dashboard/Graph";
 import Link from "next/link";
 import { format } from "timeago.js";
 import { GithubURL } from "@/types/user";
+
+import RepositoryGridSkeleton from "./dashboard/RepositoryGridSkeleton";
 
 type Props = {
   user?: GithubURL;
@@ -84,12 +80,22 @@ const Dashboard = ({ user, repos }: Props) => {
             <IssueSummary
               commit={repos?.commitCount || 0}
               fork={forkCount || 0}
-              lssue={repos?.issueCount || 0}
+              issue={repos?.issueCount || 0}
               star={stargazersCount || 0}
             />
-            <Chart open={1} inProgress={5} closed={3} />
+            <Chart
+              commit={repos?.commitCount || 0}
+              fork={forkCount || 0}
+              issue={repos?.issueCount || 0}
+              star={stargazersCount || 0}
+            />
           </Flex>
-          <RepositoryGrid repositoryData={repos?.repositoryData || []} />
+
+          {repos?.repositoryData.length! > 0 ? (
+            <RepositoryGrid repositoryData={repos?.repositoryData!} />
+          ) : (
+            <RepositoryGridSkeleton />
+          )}
         </Grid>
 
         <Graph username={user?.login || ""} />

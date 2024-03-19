@@ -1,5 +1,5 @@
 const DocumentPage = () => {
-  return <div>사용법</div>;
+  return <div>docs</div>;
 };
 
 export default DocumentPage;

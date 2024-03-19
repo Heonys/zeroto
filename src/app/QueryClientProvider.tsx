@@ -1,5 +1,6 @@
 "use client";
 import {
+  QueryCache,
   QueryClient,
   QueryClientProvider as TanstackQeuryClientProvider,
 } from "@tanstack/react-query";
@@ -13,6 +14,9 @@ const queryClient = new QueryClient({
       retry: false, // 실패하면 자동으로 재시도할지
     },
   },
+  queryCache: new QueryCache({
+    onError: (error) => {},
+  }),
 });
 
 const QueryClientProvider = ({ children }: PropsWithChildren) => {

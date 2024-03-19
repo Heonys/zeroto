@@ -1,25 +1,31 @@
 "use client";
-
 import { IconButton, Kbd, TextField } from "@radix-ui/themes";
 import { SearchIcon } from "../icon";
 import RecentSearchAvatar from "./RecentSearchAvatar";
-import { use, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { userSelector } from "@/atom/userAtom";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { DiHtml53DEffects } from "react-icons/di";
+import { useRecoilValue } from "recoil";
 
 const NavBarForm = () => {
-  const [username, setUsename] = useState("");
+  const [username, setUsername] = useState("");
   const router = useRouter();
   const searchs = useRecoilValue(userSelector);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsename(e.target.value);
+    setUsername(e.target.value);
   };
 
   const handleClickEnter = () => {
     router.push(`/search?username=${username}`);
+    setUsername("");
+  };
+
+  const handleKeydown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      router.push(`/search?username=${username}`);
+      setUsername("");
+    }
   };
 
   return (
@@ -33,6 +39,7 @@ const NavBarForm = () => {
           placeholder="Search Github"
           value={username}
           onChange={handleChange}
+          onKeyDown={handleKeydown}
         />
         <TextField.Slot>
           <IconButton size="1" variant="ghost" onClick={handleClickEnter}>

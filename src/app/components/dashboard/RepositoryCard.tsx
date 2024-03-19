@@ -18,7 +18,7 @@ const RepositoryCard = ({ name, description, language, html_url }: Props) => {
         <Text as="div" color="gray" size="2">
           {description}
         </Text>
-        <Badge color="indigo">{language}</Badge>
+        {language && <Badge color="indigo">{language}</Badge>}
       </Link>
     </Card>
   );

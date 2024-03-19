@@ -9,12 +9,12 @@ import { Box, Card, Flex, Text } from "@radix-ui/themes";
 
 type Props = {
   commit: number;
-  lssue: number;
+  issue: number;
   star: number;
   fork: number;
 };
 
-const IssueSummary = ({ commit, lssue, star, fork }: Props) => {
+const IssueSummary = ({ commit, issue, star, fork }: Props) => {
   const statuses: {
     label: string;
     value: number;
@@ -27,7 +27,7 @@ const IssueSummary = ({ commit, lssue, star, fork }: Props) => {
     },
     {
       label: "Issue",
-      value: lssue,
+      value: issue,
       icon: <AlertIcon size={25} />,
     },
     {
