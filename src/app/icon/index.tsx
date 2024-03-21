@@ -19,3 +19,8 @@ export { IoAlertCircleOutline as AlertIcon } from "react-icons/io5";
 export { CgWebsite as WebIcon } from "react-icons/cg";
 export { PiGitFork as ForkIcon } from "react-icons/pi";
 export { FaRegBell as BellIcon } from "react-icons/fa6";
+
+export { TbSquareRoundedNumber1 as NumberIcon1 } from "react-icons/tb";
+export { TbSquareRoundedNumber2 as NumberIcon2 } from "react-icons/tb";
+export { TbSquareRoundedNumber3 as NumberIcon3 } from "react-icons/tb";
+export { TbSquareRoundedNumber4 as NumberIcon4 } from "react-icons/tb";

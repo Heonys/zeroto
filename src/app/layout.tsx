@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
@@ -9,7 +9,10 @@ import AuthProvider from "./api/auth/Provider";
 import QueryClientProvider from "./QueryClientProvider";
 import RecoilProvider from "./RecoilProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const notoSansKr = Noto_Sans_KR({
+  subsets: ["latin"],
+  weight: ["100", "400", "700", "900"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,13 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en">
       <body className="bg-[#f3efee]">
         <Theme>
           <AuthProvider>
             <RecoilProvider>
               <QueryClientProvider>
-                <div className="flex items-center ">
+                <div className={`flex items-center ${notoSansKr.className}`}>
                   <div className="self-start pl-2 mt-2">
                     <Sidebar />
                   </div>

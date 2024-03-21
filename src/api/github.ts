@@ -48,3 +48,34 @@ export async function getIssueByURL(url: string) {
   const data: any[] = await response.json();
   return data;
 }
+
+export async function getFollowingByUsername(username: string) {
+  const response = await fetch(
+    `https://api.github.com/users/${username}/following`,
+    config,
+  );
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+  const data = await response.json();
+  return data;
+}
+
+export async function getFollowersByUsername(username: string) {
+  const response = await fetch(
+    `https://api.github.com/users/${username}/followers`,
+    config,
+  );
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+  const data = await response.json();
+  return data;
+}
+
+export async function getFollowByUsername(username: string) {
+  const followings = await getFollowingByUsername(username);
+  const followers = await getFollowersByUsername(username);
+
+  return { followers, followings };
+}

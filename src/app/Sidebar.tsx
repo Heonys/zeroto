@@ -10,6 +10,7 @@ import {
   DocumentIcon,
   SettingIcon,
   FriendsIcon,
+  StarIcon,
 } from "./icon";
 import { useSession } from "next-auth/react";
 
@@ -43,6 +44,7 @@ const NavLinks = () => {
     ...(status === "authenticated"
       ? [{ label: <DashboardIcon size={25} />, href: "/me" }]
       : []),
+    { label: <StarIcon size={25} />, href: "/bookmark" },
     { label: <FriendsIcon size={25} />, href: "/search" },
     { label: <SettingIcon size={25} />, href: "/setting" },
   ];
