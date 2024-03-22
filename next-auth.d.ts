@@ -8,6 +8,7 @@ declare module "next-auth" {
     email?: string | null;
     image?: string | null;
     username: string;
+    likes: { name: string; avatar_url: string }[];
   }
 
   interface Session {
@@ -16,6 +17,7 @@ declare module "next-auth" {
       email?: string | null;
       image?: string | null;
       username: string;
+      likes: { name: string; avatar_url: string }[];
     };
   }
 }

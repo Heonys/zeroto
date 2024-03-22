@@ -17,6 +17,7 @@ const authOption: AuthOptions = {
           email: profile.email,
           image: profile.avatar_url,
           username: profile.login,
+          likes: [],
         };
       },
     }),
@@ -34,6 +35,7 @@ const authOption: AuthOptions = {
         session.user = {
           ...user,
           username: user.username,
+          likes: user.likes,
         };
       }
       return session;

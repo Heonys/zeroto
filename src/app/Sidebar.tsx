@@ -42,9 +42,11 @@ const NavLinks = () => {
     { label: <HomeIcon size={25} />, href: "/" },
     { label: <DocumentIcon size={25} />, href: "/docs" },
     ...(status === "authenticated"
-      ? [{ label: <DashboardIcon size={25} />, href: "/me" }]
+      ? [
+          { label: <DashboardIcon size={25} />, href: "/me" },
+          { label: <StarIcon size={25} />, href: "/bookmark" },
+        ]
       : []),
-    { label: <StarIcon size={25} />, href: "/bookmark" },
     { label: <FriendsIcon size={25} />, href: "/search" },
     { label: <SettingIcon size={25} />, href: "/setting" },
   ];

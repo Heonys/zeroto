@@ -11,7 +11,7 @@ const MyDashboardPage = () => {
 
   if (isLoading) return <LoadingSpinner />;
 
-  return <Dashboard user={user} repos={data} />;
+  return <Dashboard me={true} user={user} repos={data} />;
 };
 
 export default MyDashboardPage;

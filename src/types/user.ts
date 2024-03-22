@@ -228,3 +228,14 @@ export interface Parent {
   url: string;
   html_url: string;
 }
+
+export type LikesType = { name: string; avatar_url: string };
+
+export type AuthType = {
+  _id: string;
+  name: string;
+  username: string;
+  image: string;
+  email: string;
+  likes: LikesType[];
+};

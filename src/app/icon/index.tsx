@@ -6,6 +6,7 @@ export { IoSettingsOutline as SettingIcon } from "react-icons/io5";
 export { IoIosSearch as SearchIcon } from "react-icons/io";
 export { MdMenu as MenuIcon } from "react-icons/md";
 export { FaRegStar as StarIcon } from "react-icons/fa6";
+export { FaStar as StarFillIcon } from "react-icons/fa";
 export { MdPeople as PeopleIcon } from "react-icons/md";
 export { FaLocationDot as LocatoinIcon } from "react-icons/fa6";
 export { FaAngleDown as DownIcon } from "react-icons/fa6";
@@ -19,6 +20,8 @@ export { IoAlertCircleOutline as AlertIcon } from "react-icons/io5";
 export { CgWebsite as WebIcon } from "react-icons/cg";
 export { PiGitFork as ForkIcon } from "react-icons/pi";
 export { FaRegBell as BellIcon } from "react-icons/fa6";
+export { AiOutlineLike as LikesIcon } from "react-icons/ai";
+export { AiFillLike as LikesFillIcon } from "react-icons/ai";
 
 export { TbSquareRoundedNumber1 as NumberIcon1 } from "react-icons/tb";
 export { TbSquareRoundedNumber2 as NumberIcon2 } from "react-icons/tb";

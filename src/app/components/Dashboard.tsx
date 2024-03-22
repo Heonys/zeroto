@@ -10,15 +10,16 @@ import Graph from "./dashboard/Graph";
 import Link from "next/link";
 import { format } from "timeago.js";
 import { GithubURL } from "@/types/user";
-
 import RepositoryGridSkeleton from "./dashboard/RepositoryGridSkeleton";
+import LikesButton from "./dashboard/LikesButton";
 
 type Props = {
+  me: boolean;
   user?: GithubURL;
   repos?: Repos;
 };
 
-const Dashboard = ({ user, repos }: Props) => {
+const Dashboard = ({ me, user, repos }: Props) => {
   const forkCount = repos?.repositoryData.reduce(
     (acc, cur) => acc + cur.forks_count,
     0,
@@ -32,13 +33,18 @@ const Dashboard = ({ user, repos }: Props) => {
   return (
     <div className="w-full h-full">
       <div className="absolute  w-[19vw] left-[3vw] top-[10vh] bg-white flex flex-col items-start">
-        <div className="border-2 border-gray-300 rounded-full overflow-hidden">
-          <Image
-            src={user?.avatar_url!}
-            alt="profile"
-            width={250}
-            height={250}
-          />
+        <div className="relative">
+          <div className="border-2 border-gray-300 rounded-full overflow-hidden z-10">
+            <Image
+              src={user?.avatar_url!}
+              alt="profile"
+              width={250}
+              height={250}
+            />
+          </div>
+          {!me && (
+            <LikesButton name={user?.login!} avatar_url={user?.avatar_url!} />
+          )}
         </div>
         <div className="pl-3 flex flex-col space-y-1">
           <h1 className="font-bold text-2xl">{user?.name}</h1>
