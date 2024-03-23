@@ -11,6 +11,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { MenuIcon, LoginIcon } from "./icon";
+import LoadingButton from "./components/LoadingButton";
 
 const AuthStatus = () => {
   const { data: session, status } = useSession();
@@ -34,9 +35,14 @@ const AuthStatus = () => {
     router.push("/api/auth/signout");
   };
 
-  if (status === "loading") {
-    return null;
-  }
+  if (status === "loading")
+    return (
+      <Box className="bg-[#d82e5a] p-1 rounded-3xl">
+        <div className="px-2">
+          <LoadingButton />
+        </div>
+      </Box>
+    );
 
   return (
     <Box className="bg-white p-1 rounded-3xl">

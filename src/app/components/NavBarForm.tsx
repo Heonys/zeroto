@@ -4,13 +4,15 @@ import { SearchIcon } from "../icon";
 import RecentSearchAvatar from "./RecentSearchAvatar";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { userSelector } from "@/atom/userAtom";
-import { useRecoilValue } from "recoil";
+import { userAtom } from "@/atom/userAtom";
+import { useRecoilState } from "recoil";
+import { useQueryClient } from "@tanstack/react-query";
 
 const NavBarForm = () => {
   const [username, setUsername] = useState("");
   const router = useRouter();
-  const searchs = useRecoilValue(userSelector);
+  const [searchs, setSearch] = useRecoilState(userAtom);
+  const queryClient = useQueryClient();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -26,6 +28,11 @@ const NavBarForm = () => {
       router.push(`/search?username=${username}`);
       setUsername("");
     }
+  };
+
+  const onDelete = (username: string) => {
+    setSearch((prev) => prev.filter((v) => v.username !== username));
+    queryClient.removeQueries({ queryKey: ["search", username], exact: true });
   };
 
   return (
@@ -53,6 +60,7 @@ const NavBarForm = () => {
             key={username}
             username={username}
             avatar_url={avatar_url}
+            onDelete={onDelete}
           />
         );
       })}

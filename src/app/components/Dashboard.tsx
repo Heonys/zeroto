@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { PeopleIcon, CalendarIcon, UpdateIcon, WebIcon } from "../icon";
+import { PeopleIcon, CalendarIcon, UpdateIcon, GithubIcon } from "../icon";
 import type { Repos } from "@/hooks/useMe";
 import Chart from "./dashboard/Chart";
 import { Flex, Grid } from "@radix-ui/themes";
@@ -15,11 +15,12 @@ import LikesButton from "./dashboard/LikesButton";
 
 type Props = {
   me: boolean;
+  isLogin: boolean;
   user?: GithubURL;
   repos?: Repos;
 };
 
-const Dashboard = ({ me, user, repos }: Props) => {
+const Dashboard = ({ me, user, repos, isLogin }: Props) => {
   const forkCount = repos?.repositoryData.reduce(
     (acc, cur) => acc + cur.forks_count,
     0,
@@ -42,7 +43,7 @@ const Dashboard = ({ me, user, repos }: Props) => {
               height={250}
             />
           </div>
-          {!me && (
+          {!me && isLogin && (
             <LikesButton name={user?.login!} avatar_url={user?.avatar_url!} />
           )}
         </div>
@@ -69,7 +70,7 @@ const Dashboard = ({ me, user, repos }: Props) => {
             </div>
           </div>
           <div className="flex space-x-2 items-center">
-            <WebIcon size={20} />
+            <GithubIcon size={20} />
             <Link
               href={user?.html_url!}
               className="underline decoration-1 font-medium"

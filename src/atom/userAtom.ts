@@ -10,7 +10,7 @@ export const userAtom = atom<User[]>({
   default: [],
 });
 
-export const userSelector = selector({
+export const userAddSelector = selector({
   key: "AddItemAtom",
   get: ({ get }) => get(userAtom),
   set: ({ get, set }, newUsers) => {

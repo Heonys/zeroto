@@ -3,14 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import { Repos } from "./useMe";
 import { getCommitByURL, getIssueByURL } from "@/api/github";
 import { useSetRecoilState } from "recoil";
-import { userSelector } from "@/atom/userAtom";
+import { userAddSelector } from "@/atom/userAtom";
 
-const useUser = (username: string) => {
-  const setSearch = useSetRecoilState(userSelector);
+const useSearch = (username: string) => {
+  const setSearch = useSetRecoilState(userAddSelector);
 
   const userQuery = useQuery<GithubURL>({
     enabled: !!username,
-    queryKey: [username],
+    queryKey: ["search", username],
     queryFn: async () => {
       const response = await fetch(`/api/user/${username}`);
 
@@ -34,7 +34,7 @@ const useUser = (username: string) => {
 
   const repositoryQuery = useQuery<Repos>({
     enabled: !!username,
-    queryKey: [username, "repos"],
+    queryKey: ["repos", username],
     queryFn: async () => {
       const response = await fetch(`/api/user/${username}/repos`);
 
@@ -69,4 +69,4 @@ const useUser = (username: string) => {
   return { userQuery, repositoryQuery };
 };
 
-export default useUser;
+export default useSearch;

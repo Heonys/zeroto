@@ -4,6 +4,7 @@ import FollowingCard from "./FollowingCard";
 import LoadingSpinner from "@/app/components/LoadingSpinner";
 import { Box, Flex, Tabs, Text } from "@radix-ui/themes";
 import useLikes from "@/hooks/useLikes";
+import { StarIcon, GithubIcon } from "@/app/icon";
 
 type Props = {
   usernmae: string;
@@ -25,19 +26,28 @@ const FollowingGrid = ({ usernmae }: Props) => {
       <Tabs.Root defaultValue="likes">
         <Tabs.List size="2">
           <Tabs.Trigger value="likes">
-            <Text size="2" weight="bold">
-              Likes
-            </Text>
+            <Flex gap="1" align="center">
+              <StarIcon size={18} />
+              <Text size="2" weight="bold">
+                Likes
+              </Text>
+            </Flex>
           </Tabs.Trigger>
           <Tabs.Trigger value="following">
-            <Text size="2" weight="bold">
-              Github Follwing
-            </Text>
+            <Flex gap="1" align="center">
+              <GithubIcon size={18} />
+              <Text size="2" weight="bold">
+                Github Follwing
+              </Text>
+            </Flex>
           </Tabs.Trigger>
           <Tabs.Trigger value="followers">
-            <Text size="2" weight="bold">
-              Github Followers
-            </Text>
+            <Flex gap="1" align="center">
+              <GithubIcon size={18} />
+              <Text size="2" weight="bold">
+                Github Followers
+              </Text>
+            </Flex>
           </Tabs.Trigger>
         </Tabs.List>
 
@@ -56,6 +66,7 @@ const FollowingGrid = ({ usernmae }: Props) => {
           </Tabs.Content>
 
           <Tabs.Content value="following">
+            <Text size="2">깃허브 팔로잉의 리스트가 보여집니다</Text>
             <ul>
               {followData.followings.map(({ id, avatar_url, login }) => {
                 return (
@@ -68,6 +79,7 @@ const FollowingGrid = ({ usernmae }: Props) => {
           </Tabs.Content>
 
           <Tabs.Content value="followers">
+            <Text size="2">깃허브 팔로워의 리스트가 보여집니다</Text>
             <ul>
               {followData.followers.map(({ id, avatar_url, login }) => {
                 return (

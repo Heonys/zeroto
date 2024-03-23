@@ -1,12 +1,11 @@
 "use client";
-import useUser from "@/hooks/useUser";
+import useSearch from "@/hooks/useSearch";
 import { useSearchParams } from "next/navigation";
 import Dashboard from "../components/Dashboard";
 import SearchAlert from "../components/SearchAlert";
 import LoadingSpinner from "../components/LoadingSpinner";
 import NotFoundPage from "../not-found";
 import { useSession } from "next-auth/react";
-import useLikes from "@/hooks/useLikes";
 
 const SearchPage = () => {
   const searchParams = useSearchParams();
@@ -18,7 +17,7 @@ const SearchPage = () => {
   const {
     userQuery: { data: user, isLoading, isError: isUserError },
     repositoryQuery: { data: repos },
-  } = useUser(username || "");
+  } = useSearch(username || "");
 
   if (!username) return <SearchAlert />;
   if (isLoading) return <LoadingSpinner />;
@@ -26,6 +25,7 @@ const SearchPage = () => {
 
   return (
     <Dashboard
+      isLogin={!!loginedUser}
       me={user?.login === loginedUser?.username ? true : false}
       user={user}
       repos={repos}
