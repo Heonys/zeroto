@@ -1,11 +1,11 @@
 "use client";
 import useSearch from "@/hooks/useSearch";
 import { useSearchParams } from "next/navigation";
-import Dashboard from "../components/Dashboard";
-import SearchAlert from "../components/SearchAlert";
-import LoadingSpinner from "../components/LoadingSpinner";
-import NotFoundPage from "../not-found";
+import Dashboard from "@/app/components/Dashboard";
+import SearchAlert from "@/app/components/SearchAlert";
+import LoadingSpinner from "@/app/components/LoadingSpinner";
 import { useSession } from "next-auth/react";
+import NotFoundPage from "@/app/not-found";
 
 const SearchPage = () => {
   const searchParams = useSearchParams();

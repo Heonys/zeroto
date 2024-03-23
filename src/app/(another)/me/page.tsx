@@ -1,7 +1,7 @@
 "use client";
 import useMe from "@/hooks/useMe";
-import Dashboard from "../components/Dashboard";
-import LoadingSpinner from "../components/LoadingSpinner";
+import Dashboard from "@/app/components/Dashboard";
+import LoadingSpinner from "@/app/components/LoadingSpinner";
 
 const MyDashboardPage = () => {
   const {

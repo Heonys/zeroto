@@ -35,11 +35,9 @@ export default function RootLayout({
                   <div className="self-start pl-2 mt-2">
                     <Sidebar />
                   </div>
-                  <main className="ml-4 mr-5 mt-2 flex-1 flex flex-col pt-2">
+                  <main className="ml-4 mr-5 mt-2 flex-1 flex flex-col pt-2 ">
                     <Navbar />
-                    <div className="p-2 mt-2 rounded-3xl border-2 shadow-xl h-[85vh] bg-white relative">
-                      {children}
-                    </div>
+                    {children}
                   </main>
                 </div>
               </QueryClientProvider>
