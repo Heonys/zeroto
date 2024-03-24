@@ -31,11 +31,13 @@ export default function RootLayout({
           <AuthProvider>
             <RecoilProvider>
               <QueryClientProvider>
-                <div className={`flex items-center ${notoSansKr.className}`}>
-                  <div className="self-start pl-2 mt-2">
+                <div
+                  className={`flex items-center relative ${notoSansKr.className}`}
+                >
+                  <div className="self-start pl-2 mt-2 fixed top-1 left-1">
                     <Sidebar />
                   </div>
-                  <main className="ml-4 mr-5 mt-2 flex-1 flex flex-col pt-2 ">
+                  <main className="ml-4 mr-5 mt-2 flex flex-col w-[93vw] pt-2 absolute left-[65px] top-0">
                     <Navbar />
                     {children}
                   </main>

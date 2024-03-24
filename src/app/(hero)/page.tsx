@@ -1,3 +1,5 @@
+import MotionTest from "./_components/MotionTest";
+
 export default function Home() {
-  return <div>히어로</div>;
+  return <MotionTest />;
 }
