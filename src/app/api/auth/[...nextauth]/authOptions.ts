@@ -8,8 +8,8 @@ const authOption: AuthOptions = {
   adapter: MongoDBAdapter(clientPromise) as Adapter,
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!,
+      clientId: process.env.NEXTAUTH_GITHUB_ID!,
+      clientSecret: process.env.NEXTAUTH_GITHUB_SECRET!,
       profile(profile) {
         return {
           id: profile.id.toString(),
