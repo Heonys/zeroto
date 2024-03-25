@@ -26,19 +26,20 @@ const LikesButton = ({ name, avatar_url }: Props) => {
   if (!data) return <LoadingSpinner />;
 
   return (
-    <Button
-      variant="surface"
-      className="absolute right-0 bottom-0"
-      radius="full"
-      highContrast
+    <div
+      className="absolute right-[5%] bottom-[5%] border-2 border-gray-400 rounded-full p-[0.5vw]"
       onClick={handleClick}
     >
       {data?.likes.find((v) => v.name === name) ? (
-        <StarFillIcon size={22} color="orange" className="animate-fillStar" />
+        <StarFillIcon
+          size={"1.5vw"}
+          color="orange"
+          className="animate-fillStar"
+        />
       ) : (
-        <StarIcon size={22} />
+        <StarIcon size={"1.5vw"} />
       )}
-    </Button>
+    </div>
   );
 };
 

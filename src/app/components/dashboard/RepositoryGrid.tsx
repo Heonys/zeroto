@@ -35,9 +35,9 @@ const RepositoryGrid = ({ repositoryData }: Props) => {
         mb="5"
         className="flex items-center gap-2 justify-between"
       >
-        <div className="flex items-center">
-          <RepositoryIcon size={20} />
-          Repository
+        <div className="flex items-center text-[1.15vw]">
+          <RepositoryIcon size={"1.3vw"} className="mr-1" />
+          <div>Repository</div>
           <span>{`(${repositoryData.length})`}</span>
         </div>
         <TextField.Root>

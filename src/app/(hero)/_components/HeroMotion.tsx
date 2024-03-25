@@ -45,11 +45,11 @@ const HeroMotion = () => {
   return (
     <div className="h-[200vh]">
       <div className="sticky top-0">
-        <div className="absolute left-[5%] top-[30%] h-full z-[100] text-white flex flex-col gap-4">
-          <div className="font-semibold text-5xl max-w-[45vw] leading-tight">
+        <div className="absolute left-[5%] top-[30%] h-full z-[100] text-white flex flex-col space-y-[2vh]">
+          <div className="font-semibold text-[3vw] max-w-[45vw] leading-tight">
             <div>Over 100 million developers call GitHub home</div>
           </div>
-          <div className="text-xl font-thin max-w-[45vw]">
+          <div className="text-[1.1vw] font-thin max-w-[45vw]">
             Whether scaling your startup or learning to code, GitHub is your
             home. Join the world’s largest developer platform to build
             innovations empowering humanity.

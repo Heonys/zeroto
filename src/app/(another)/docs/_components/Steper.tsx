@@ -11,16 +11,16 @@ type Props = {
 
 const Steper = ({ stepIcon, title, header, description, image }: Props) => {
   return (
-    <Flex justify="center" gap="9" className="m-4">
+    <Flex justify="center" gap="9" className="m-[2vh]">
       <Flex gap="2" className="w-[30vw]">
         <Flex direction="column" align="center" gap="2">
           {stepIcon}
           <Separator orientation="vertical" size="4" />
         </Flex>
         <Flex direction="column" gap="2">
-          <div className="font-bold">{title}</div>
-          <h1>{header}</h1>
-          <div>{description}</div>
+          <div className="font-bold text-[1.1vw] ">{title}</div>
+          <h1 className="text-[1.1vw]">{header}</h1>
+          <div className="text-[1.1vw]">{description}</div>
         </Flex>
       </Flex>
       <div className="w-[35vw] rounded-xl overflow-hidden scale-105">

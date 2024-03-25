@@ -43,18 +43,19 @@ const Chart = ({ commit, issue, star, fork }: Props) => {
   ];
 
   return (
-    <Card>
-      <ResponsiveContainer width="100%" height={260}>
-        <RadarChart outerRadius={90} width={730} height={250} data={data}>
+    <Card className="h-[40vh]">
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart
+          outerRadius={90}
+          width={730}
+          height={250}
+          data={data}
+          className="desktoplg:scale-125 desktopxl:scale-150 desktop2xl:scale-[1.7]"
+        >
           <PolarGrid />
           <PolarAngleAxis dataKey="subject" />
           <PolarRadiusAxis angle={30} />
-          <Radar
-            dataKey="A"
-            // stroke="#d82e5a"
-            fill="#d82e5a"
-            fillOpacity={0.6}
-          />
+          <Radar dataKey="A" fill="#d82e5a" fillOpacity={0.6} />
         </RadarChart>
       </ResponsiveContainer>
     </Card>

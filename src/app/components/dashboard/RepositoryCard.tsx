@@ -10,15 +10,13 @@ type Props = {
 
 const RepositoryCard = ({ name, description, language, html_url }: Props) => {
   return (
-    <Card size="1" className="mb-2">
+    <Card size="1" className="mb-[1.5vh]">
       <Link href={html_url} target="_blank">
-        <Text as="div" size="2" weight="bold">
-          {name}
-        </Text>
-        <Text as="div" color="gray" size="2">
-          {description}
-        </Text>
-        {language && <Badge color="indigo">{language}</Badge>}
+        <div className="text-[1.02vw] font-semibold mb-1">{name}</div>
+        <div className="text-[0.8vw] text-gray-600 mb-1">{description}</div>
+        <div className="text-[0.8vw]">
+          {language && <Badge color="indigo">{language}</Badge>}
+        </div>
       </Link>
     </Card>
   );

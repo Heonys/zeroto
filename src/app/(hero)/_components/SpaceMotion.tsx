@@ -26,9 +26,9 @@ const MotionTest = () => {
         </motion.div>
         <motion.div
           style={{ scale: starScale, y: imagePositionY }}
-          className="absolute top-0 left-0 z-50 w-full h-full"
+          className="absolute top-0 left-0 z-50 w-full"
         >
-          <Image src={StarImage} alt="stars" />
+          <Image src={StarImage} alt="stars" className="w-full" />
         </motion.div>
         <motion.h1
           style={{ scale: textScale, opacity, y: textPositionY }}

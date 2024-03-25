@@ -15,11 +15,9 @@ const FollowingCard = ({ avatar_url, username }: Props) => {
         align="center"
         className="border-2 border-gray-200 rounded-2xl  bg-white p-3"
       >
-        <Avatar size="4" src={avatar_url} radius="full" fallback="T" />
+        <Avatar size="5" src={avatar_url} radius="full" fallback="T" />
         <Box>
-          <Text as="div" size="1" weight="bold">
-            {username}
-          </Text>
+          <div className="text-[0.95vw] font-semibold">{username}</div>
         </Box>
       </Flex>
     </Link>

@@ -24,14 +24,13 @@ const Search = () => {
   };
 
   return (
-    <TextField.Root className="w-[50%]">
+    <TextField.Root className="w-[30vw] h-[5vh] flex items-center text-[1.1vw]">
       <TextField.Slot>
         <SearchIcon />
       </TextField.Slot>
       <TextField.Input
-        size="2"
         placeholder="Search GitHub"
-        className="w-full"
+        size="3"
         radius="large"
         value={username}
         onChange={handleChange}

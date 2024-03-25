@@ -34,10 +34,10 @@ export default function RootLayout({
                 <div
                   className={`flex items-center relative ${notoSansKr.className}`}
                 >
-                  <div className="self-start pl-2 mt-2 fixed top-1 left-1">
+                  <div className="self-start pl-2 mt-2 fixed top-1 left-1 w-[4vw]">
                     <Sidebar />
                   </div>
-                  <main className="ml-4 mr-5 mt-2 flex flex-col w-[93vw] pt-2 absolute left-[65px] top-0">
+                  <main className="ml-4 mr-5 mt-2 flex flex-col w-[93vw] pt-2 absolute left-[4vw] top-0">
                     <Navbar />
                     {children}
                   </main>

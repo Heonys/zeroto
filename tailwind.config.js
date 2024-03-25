@@ -9,6 +9,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        // desktop: "1600px",
+        desktoplg: "1900px",
+        desktopxl: "2300px",
+        desktop2xl: "2600px",
+      },
       keyframes: {
         fillStar: {
           "0%": { transform: "rotateY(0deg) scale(1)" },

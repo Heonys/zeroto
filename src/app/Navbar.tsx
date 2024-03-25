@@ -6,7 +6,7 @@ import NavBarForm from "./components/NavBarForm";
 
 const Navbar = () => {
   return (
-    <Flex justify="between" className="h-[6vh]" align="center">
+    <Flex justify="between" className="h-[5vh] " align="center">
       <NavBarForm />
       <AuthStatus />
     </Flex>

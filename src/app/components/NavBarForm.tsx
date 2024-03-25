@@ -39,7 +39,7 @@ const NavBarForm = () => {
     <div className="flex space-x-2">
       <TextField.Root radius="full">
         <TextField.Slot>
-          <SearchIcon size={15} />
+          <SearchIcon size={"1vw"} />
         </TextField.Slot>
         <TextField.Input
           size="2"

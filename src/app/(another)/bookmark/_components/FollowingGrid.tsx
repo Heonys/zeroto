@@ -22,38 +22,34 @@ const FollowingGrid = ({ usernmae }: Props) => {
   if (!followData || !authData) return <LoadingSpinner />;
 
   return (
-    <Flex direction="column" className="p-2">
+    <Flex direction="column" className="p-[0.5vw]">
       <Tabs.Root defaultValue="likes">
         <Tabs.List size="2">
           <Tabs.Trigger value="likes">
             <Flex gap="1" align="center">
-              <StarIcon size={18} />
-              <Text size="2" weight="bold">
-                Likes
-              </Text>
+              <StarIcon size={"1.1vw"} />
+              <div className="font-bold text-[0.85vw]">Likes</div>
             </Flex>
           </Tabs.Trigger>
           <Tabs.Trigger value="following">
             <Flex gap="1" align="center">
-              <GithubIcon size={18} />
-              <Text size="2" weight="bold">
-                Github Follwing
-              </Text>
+              <GithubIcon size={"1.1vw"} />
+              <div className="font-bold text-[0.85vw]">Github Follwing</div>
             </Flex>
           </Tabs.Trigger>
           <Tabs.Trigger value="followers">
             <Flex gap="1" align="center">
-              <GithubIcon size={18} />
-              <Text size="2" weight="bold">
-                Github Followers
-              </Text>
+              <GithubIcon size={"1.1vw"} />
+              <div className="font-bold text-[0.85vw]"> Github Followers</div>
             </Flex>
           </Tabs.Trigger>
         </Tabs.List>
 
-        <Box px="4" pt="3" pb="2" className="max-h-[70vh] overflow-y-scroll">
+        <div className="max-h-[70vh] overflow-y-scroll p-[1vw]">
           <Tabs.Content value="likes">
-            <Text size="2">좋아요를 누른 유저의 리스트가 보여집니다</Text>
+            <div className="text-[0.95vw]">
+              좋아요를 누른 유저의 리스트가 보여집니다
+            </div>
             <ul>
               {authData.likes.map(({ name, avatar_url }) => {
                 return (
@@ -66,7 +62,9 @@ const FollowingGrid = ({ usernmae }: Props) => {
           </Tabs.Content>
 
           <Tabs.Content value="following">
-            <Text size="2">깃허브 팔로잉의 리스트가 보여집니다</Text>
+            <div className="text-[0.95vw]">
+              깃허브 팔로잉의 리스트가 보여집니다
+            </div>
             <ul>
               {followData.followings.map(({ id, avatar_url, login }) => {
                 return (
@@ -79,7 +77,9 @@ const FollowingGrid = ({ usernmae }: Props) => {
           </Tabs.Content>
 
           <Tabs.Content value="followers">
-            <Text size="2">깃허브 팔로워의 리스트가 보여집니다</Text>
+            <div className="text-[0.95vw]">
+              깃허브 팔로워의 리스트가 보여집니다
+            </div>
             <ul>
               {followData.followers.map(({ id, avatar_url, login }) => {
                 return (
@@ -90,7 +90,7 @@ const FollowingGrid = ({ usernmae }: Props) => {
               })}
             </ul>
           </Tabs.Content>
-        </Box>
+        </div>
       </Tabs.Root>
     </Flex>
   );

@@ -13,17 +13,17 @@ const SearchAlert = () => {
       direction="column"
       gap="3"
       align="center"
-      className="max-w-[60vw] m-auto mt-4"
+      className="max-w-[60vw] mx-auto mt-4 h-full w-[57%]"
     >
       <LogoIcon />
       <Search />
       <Flex align="center" gap="2">
-        <BellIcon size={15} color="#926715" />
-        <Text className="text-[#647389]">
+        <BellIcon size={"1vw"} color="#926715" />
+        <div className="text-[#647389] text-[1vw]">
           사용자 이름이 아닌 깃허브 아이디로 검색해주세요
-        </Text>
+        </div>
       </Flex>
-      <Image src={Github} alt="github" />
+      <Image src={Github} alt="github" layout="responsive" />
     </Flex>
   );
 };
