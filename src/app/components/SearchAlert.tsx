@@ -1,8 +1,8 @@
 "use client";
-import { Flex, Text } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
+import { githubImage } from "@/asset/image";
 import LogoIcon from "./LogoIcon";
 import { BellIcon } from "../icon";
-import Github from "../../../public/github.webp";
 import Image from "next/image";
 import Search from "./Search";
 
@@ -23,7 +23,7 @@ const SearchAlert = () => {
           사용자 이름이 아닌 깃허브 아이디로 검색해주세요
         </div>
       </Flex>
-      <Image src={Github} alt="github" layout="responsive" />
+      <Image src={githubImage} alt="github" layout="responsive" />
     </Flex>
   );
 };

@@ -16,7 +16,7 @@ const HeroMotion = () => {
   const loadImage = async () => {
     if (images.length >= 160) return;
     for (let i = 1; i < 161; i++) {
-      const image = await import(`@/../public/animation/octocat/${i}.jpg`);
+      const image = await import(`/animation/octocat/${i}.jpg`);
       setImages((prev) => [...prev, image]);
     }
   };
