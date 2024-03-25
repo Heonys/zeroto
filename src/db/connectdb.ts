@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const uri = process.env.MONGODB_URI as string;
+const uri = process.env.NEXTAUTH_MONGODB_URI as string;
 const options: any = { useNewUrlParser: true };
 let connectDB: Promise<MongoClient>;
 
