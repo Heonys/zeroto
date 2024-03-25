@@ -35,33 +35,38 @@ const HeroMotion = () => {
 
   if (images.length < 150)
     return (
-      <div className="sticky top-[50%]">
-        <LoadingSpinner />
-      </div>
+      <>
+        <div className="sticky top-[50%]">
+          <LoadingSpinner />
+        </div>
+        <div className="h-[100vh]"></div>
+      </>
     );
   return (
-    <div className="sticky top-0">
-      <div className="absolute left-[5%] top-[30%] h-full z-[100] text-white flex flex-col gap-4">
-        <div className="font-semibold text-5xl max-w-[45vw] leading-tight">
-          <div>Over 100 million developers call GitHub home</div>
+    <div className="h-[200vh]">
+      <div className="sticky top-0">
+        <div className="absolute left-[5%] top-[30%] h-full z-[100] text-white flex flex-col gap-4">
+          <div className="font-semibold text-5xl max-w-[45vw] leading-tight">
+            <div>Over 100 million developers call GitHub home</div>
+          </div>
+          <div className="text-xl font-thin max-w-[45vw]">
+            Whether scaling your startup or learning to code, GitHub is your
+            home. Join the world’s largest developer platform to build
+            innovations empowering humanity.
+          </div>
+          <Button className="self-start" size="4" color="iris">
+            Sign in to GitHub
+          </Button>
         </div>
-        <div className="text-xl font-thin max-w-[45vw]">
-          Whether scaling your startup or learning to code, GitHub is your home.
-          Join the world’s largest developer platform to build innovations
-          empowering humanity.
-        </div>
-        <Button className="self-start" size="4" color="iris">
-          Sign in to GitHub
-        </Button>
+        <motion.div className="flex justify-end overflow-x-hidden">
+          <Image
+            src={images[currentIndex]}
+            alt={`octo${currentIndex}`}
+            className="w-[70%] translate-x-[8vw]"
+            ref={ref}
+          />
+        </motion.div>
       </div>
-      <motion.div className="flex justify-end overflow-x-hidden">
-        <Image
-          src={images[currentIndex]}
-          alt={`octo${currentIndex}`}
-          className="w-[70%] translate-x-[8vw]"
-          ref={ref}
-        />
-      </motion.div>
     </div>
   );
 };
