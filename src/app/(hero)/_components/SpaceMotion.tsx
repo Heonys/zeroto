@@ -18,11 +18,8 @@ const MotionTest = () => {
   return (
     <div className="h-[250vh]">
       <div className="text-white overflow-hidden h-full relative" ref={ref}>
-        <motion.div
-          style={{ scale: spaceScale, y: imagePositionY, opacity }}
-          className=""
-        >
-          <Image src={SpaceImage} alt="space" className="" />
+        <motion.div style={{ scale: spaceScale, y: imagePositionY, opacity }}>
+          <Image src={SpaceImage} alt="space" />
         </motion.div>
         <motion.div
           style={{ scale: starScale, y: imagePositionY }}

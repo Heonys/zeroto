@@ -1,7 +1,12 @@
 "use client";
 import LoadingSpinner from "@/app/components/LoadingSpinner";
 import { Button } from "@radix-ui/themes";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -9,14 +14,14 @@ const HeroMotion = () => {
   const [images, setImages] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const ref = useRef<HTMLImageElement>(null);
-  const { scrollYProgress, scrollY } = useScroll();
+  const { scrollYProgress } = useScroll();
 
   const totalRatio = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
 
   const loadImage = async () => {
     if (images.length >= 160) return;
     for (let i = 1; i < 161; i++) {
-      const image = await import(`@/../public/animation/octocat/${i}.jpg`);
+      const image = await import(`../../../../public/images/${i}.webp`);
       setImages((prev) => [...prev, image]);
     }
   };
@@ -28,9 +33,12 @@ const HeroMotion = () => {
     else setCurrentIndex(currentFrame);
   };
 
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    updateAtScroll();
+  });
+
   useEffect(() => {
     loadImage();
-    scrollY.onChange(updateAtScroll);
   }, []);
 
   if (images.length < 150)

@@ -44,7 +44,7 @@ const IssueSummary = ({ commit, issue, star, fork }: Props) => {
             <Flex align="center" justify="between">
               <Flex direction="column" gap="1">
                 <div className="text-[1.05vw] font-medium">{label}</div>
-                <text className="font-bold text-[1.05vw]">{value}</text>
+                <div className="font-bold text-[1.05vw]">{value}</div>
               </Flex>
               {icon}
             </Flex>
