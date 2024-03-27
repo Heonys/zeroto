@@ -9,9 +9,11 @@ import { PropsWithChildren } from "react";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnMount: false, // 컴포넌트가 마운트될 때 해당 쿼리를 다시 불러올지
-      refetchOnWindowFocus: false, // 윈도우 포커스마다 불러올지
-      retry: false, // 실패하면 자동으로 재시도할지
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+      retry: false,
+      staleTime: 1000 * 60 * 60,
     },
   },
   queryCache: new QueryCache({

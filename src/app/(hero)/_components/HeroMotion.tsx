@@ -11,6 +11,7 @@ import LoadingSpinner from "@/app/components/LoadingSpinner";
 import { useSession } from "next-auth/react";
 import useSplash from "@/hooks/useSplash";
 import HeroButtonGroup from "./HeroButtonGroup";
+// import GitFlow from "./GitFlow";
 
 const HeroMotion = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -19,6 +20,7 @@ const HeroMotion = () => {
   const { status } = useSession();
   const totalRatio = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
   const { showSplash } = useSplash();
+  // const width = useTransform(scrollYProgress, [0, 0.4], ["0%", "120%"]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     setCurrentIndex(Math.round(totalRatio.get() * 159) + 1);
@@ -38,6 +40,12 @@ const HeroMotion = () => {
     <div className="h-[200vh]">
       <div className="sticky top-0 flex justify-between items-center">
         <div className="relative left-[7%] z-[100] text-white flex flex-col space-y-[2.5vh]">
+          {/* <motion.div
+            className="relative"
+            style={{ width, overflow: "hidden" }}
+          >
+            <GitFlow />
+          </motion.div> */}
           <div className="font-semibold text-[2.5vw] max-w-[50vw] leading-tight scale-125 translate-x-[3vw]">
             <div>Over 100 million developers call GitHub home</div>
           </div>
@@ -55,7 +63,7 @@ const HeroMotion = () => {
             width={900}
             height={675}
             alt={`octocat${currentIndex}`}
-            className="translate-x-[4vw] translate-y-[5vh]"
+            className="translate-x-[4vw] translate-y-[5vh] z-50"
             priority
             ref={ref}
           />

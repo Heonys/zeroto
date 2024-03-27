@@ -3,19 +3,19 @@ import React from "react";
 type Props = {
   title: string;
   icon: React.ReactNode;
-  color: "white" | "iris";
+  color: "white" | "blue";
   onClick: () => void;
 };
 
-// todo: classnames 추가
 const HeroButton = ({ title, icon, color, onClick }: Props) => {
-  const buttonColor = color === "white" ? "#e7eefe" : "#5b5bd5";
-  const textColor = color === "white" ? "text-black" : "";
-  const font = color === "white" ? "font-semibold" : "font-normal";
+  const colorStyle =
+    color === "white"
+      ? "bg-[#e7eefe] border-[#e7eefe] text-black font-semibold"
+      : "bg-[#5b5bd5] border-[#5b5bd5] text-white font-normal";
 
   return (
     <button
-      className={`self-start ${font} ${textColor} text-[1.2vw] border-2 border-[${buttonColor}] p-[0.6vw] px-[1vw] rounded-xl bg-[${buttonColor}] hover:opacity-85`}
+      className={`${colorStyle} self-start text-[1.2vw] border-2 p-[0.6vw] px-[1vw] rounded-xl  hover:opacity-85`}
       onClick={onClick}
     >
       <div className="flex gap-2 items-center">

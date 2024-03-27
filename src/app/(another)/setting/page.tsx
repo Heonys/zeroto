@@ -8,7 +8,6 @@ const SettingPage = () => {
         깃허브 계정연동? (한다면 카카오랑 구글 로그인 추가 +로컬 로그인)
       </div>
       <div>그외의 설정 찾아보기</div>
-      <div>README같은 느낌으로?</div>
       <div>그냥 페이지 삭제?</div>
     </div>
   );

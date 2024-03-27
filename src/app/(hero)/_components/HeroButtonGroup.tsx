@@ -15,14 +15,14 @@ const HeroButtonGroup = () => {
       {user ? (
         <HeroButton
           title="Dashboard"
-          color="iris"
+          color="blue"
           icon={<DashboardIcon size={"1.2vw"} />}
           onClick={() => router.push("/me")}
         />
       ) : (
         <HeroButton
           title="Sign in to GitHub"
-          color="iris"
+          color="blue"
           icon={<GithubIcon size={"1.2vw"} />}
           onClick={() => {
             router.push("/api/auth/signin");
