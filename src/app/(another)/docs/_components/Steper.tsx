@@ -1,12 +1,13 @@
 import { Flex, Separator } from "@radix-ui/themes";
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
+import SteperImage from "./SteperImage";
 
 type Props = {
   stepIcon: React.ReactNode;
   title: string;
   header: string;
-  description: string;
   image: StaticImageData;
+  description: React.ReactNode;
 };
 
 const Steper = ({ stepIcon, title, header, description, image }: Props) => {
@@ -23,9 +24,7 @@ const Steper = ({ stepIcon, title, header, description, image }: Props) => {
           <div className="text-[1.1vw]">{description}</div>
         </Flex>
       </Flex>
-      <div className="w-[35vw] rounded-xl overflow-hidden scale-105">
-        <Image src={image} alt="search" className="object-cover" />
-      </div>
+      <SteperImage image={image} />
     </Flex>
   );
 };

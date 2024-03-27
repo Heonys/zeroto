@@ -18,8 +18,12 @@ const AuthStatus = () => {
   const user = session?.user;
   const router = useRouter();
 
-  const handleClick = async () => {
+  const handleClickLogout = async () => {
     router.push("/api/auth/signout");
+  };
+
+  const handleClickDashboard = () => {
+    router.push("/me");
   };
 
   if (status === "loading")
@@ -59,8 +63,12 @@ const AuthStatus = () => {
               <DropdownMenu.Label>
                 <Text size="2"> {user.email}</Text>
               </DropdownMenu.Label>
-              <DropdownMenu.Item color="red" onClick={handleClick}>
-                로그아웃
+              <DropdownMenu.Item onClick={handleClickDashboard}>
+                Dashboard
+              </DropdownMenu.Item>
+              <DropdownMenu.Separator />
+              <DropdownMenu.Item color="red" onClick={handleClickLogout}>
+                Logout
               </DropdownMenu.Item>
             </DropdownMenu.Content>
           </DropdownMenu.Root>

@@ -23,6 +23,9 @@ export { FaRegBell as BellIcon } from "react-icons/fa6";
 export { AiOutlineLike as LikesIcon } from "react-icons/ai";
 export { AiFillLike as LikesFillIcon } from "react-icons/ai";
 export { TiDelete as DeleteIcon } from "react-icons/ti";
+export { CgCloseR as CloseRIcon } from "react-icons/cg";
+export { CgCloseO as CloseOIcon } from "react-icons/cg";
+export { RiCloseCircleFill as CloseFillIcon } from "react-icons/ri";
 
 export { TbSquareRoundedNumber1 as NumberIcon1 } from "react-icons/tb";
 export { TbSquareRoundedNumber2 as NumberIcon2 } from "react-icons/tb";
