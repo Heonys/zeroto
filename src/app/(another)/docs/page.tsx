@@ -27,7 +27,7 @@ const DocumentPage = () => {
                 <Badge color="orange" radius="large">
                   1536 x 864
                 </Badge>
-                <span>에서</span>
+                <span>부터</span>
                 <Badge color="blue" radius="large">
                   1920 x 1080
                 </Badge>

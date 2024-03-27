@@ -43,7 +43,7 @@ const NavBarForm = () => {
         </TextField.Slot>
         <TextField.Input
           size="2"
-          placeholder="Search Github"
+          placeholder="Quick search..."
           value={username}
           onChange={handleChange}
           onKeyDown={handleKeydown}

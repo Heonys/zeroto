@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { Button } from "@radix-ui/themes";
 import {
   motion,
   useMotionValueEvent,
@@ -10,6 +9,8 @@ import {
 import { useRef, useState } from "react";
 import LoadingSpinner from "@/app/components/LoadingSpinner";
 import { useSession } from "next-auth/react";
+import useSplash from "@/hooks/useSplash";
+import HeroButtonGroup from "./HeroButtonGroup";
 
 const HeroMotion = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -17,12 +18,13 @@ const HeroMotion = () => {
   const { scrollYProgress } = useScroll();
   const { status } = useSession();
   const totalRatio = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
+  const { showSplash } = useSplash();
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     setCurrentIndex(Math.round(totalRatio.get() * 159) + 1);
   });
 
-  if (status === "loading")
+  if (status === "loading" && showSplash)
     return (
       <>
         <div className="sticky top-[50%]">
@@ -44,9 +46,7 @@ const HeroMotion = () => {
             home. Join the world’s largest developer platform to build
             innovations empowering humanity.
           </div>
-          <button className="self-start font-sans text-[1.4vw] border-2 border-[#5b5bd5] p-[0.6vw] px-[1vw] rounded-xl bg-[#5b5bd5]">
-            Sign in to GitHub
-          </button>
+          <HeroButtonGroup />
         </div>
         <motion.div className="overflow-hidden ">
           <Image

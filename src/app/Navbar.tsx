@@ -1,6 +1,4 @@
 import { Flex } from "@radix-ui/themes";
-import React from "react";
-
 import AuthStatus from "./AuthStatus";
 import NavBarForm from "./components/NavBarForm";
 
