@@ -13,7 +13,7 @@ const useLoaded = () => {
         const timeout = setTimeout(() => {
           setIsLoaded(true);
           localStorage.setItem("loaded", "true");
-        }, 4000);
+        }, 5000);
         return () => clearTimeout(timeout);
       }
     } else {

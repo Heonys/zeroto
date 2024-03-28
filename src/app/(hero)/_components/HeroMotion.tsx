@@ -57,7 +57,7 @@ const HeroMotion = () => {
             height={675}
             alt={`octocat${currentIndex}`}
             className="translate-x-[4vw] translate-y-[5vh] z-50"
-            priority
+            priority={true}
             ref={ref}
           />
         </motion.div>
