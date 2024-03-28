@@ -17,11 +17,11 @@ const HeroMotion = () => {
   const ref = useRef<HTMLImageElement>(null);
   const { scrollYProgress } = useScroll();
   const { status } = useSession();
-  const totalRatio = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
+  const totalRatio = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
   const { isLoaded } = useLoaded();
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    setCurrentIndex(Math.round(totalRatio.get() * 159) + 1);
+    setCurrentIndex(Math.round(totalRatio.get() * 79) + 1);
   });
 
   if (!isLoaded || status === "loading") {
