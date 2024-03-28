@@ -1,25 +1,21 @@
+import { loadedAtom } from "@/atom/load";
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 
 const useLoaded = () => {
-  const [documentReady, setDocumentReady] = useState(false);
+  const [isLoaded, setIsLoaded] = useRecoilState(loadedAtom);
 
   useEffect(() => {
-    const handleReadyStateChange = () => {
-      setDocumentReady(document.readyState === "complete");
-    };
-
-    if (document.readyState === "complete") {
-      setDocumentReady(true);
-    } else {
-      document.addEventListener("readystatechange", handleReadyStateChange);
+    if (!isLoaded) {
+      const timeout = setTimeout(() => {
+        // setDocumentReady(true);
+        setIsLoaded(true);
+      }, 3000);
+      return () => clearTimeout(timeout);
     }
-
-    return () => {
-      document.removeEventListener("readystatechange", handleReadyStateChange);
-    };
   }, []);
 
-  return documentReady;
+  return { isLoaded };
 };
 
 export default useLoaded;

@@ -18,13 +18,15 @@ const HeroMotion = () => {
   const { scrollYProgress } = useScroll();
   const { status } = useSession();
   const totalRatio = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
-  const isLoaded = useLoaded();
+  const { isLoaded } = useLoaded();
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     setCurrentIndex(Math.round(totalRatio.get() * 159) + 1);
   });
 
   if (!isLoaded || status === "loading") {
+    console.log("loaded ::", isLoaded, status);
+
     return (
       <>
         <div className="sticky top-[50%]">
