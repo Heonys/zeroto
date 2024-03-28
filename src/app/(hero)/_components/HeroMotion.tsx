@@ -25,8 +25,6 @@ const HeroMotion = () => {
   });
 
   if (!isLoaded || status === "loading") {
-    console.log("loaded ::", isLoaded, status);
-
     return (
       <>
         <div className="sticky top-[50%]">

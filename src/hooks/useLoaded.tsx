@@ -6,12 +6,18 @@ const useLoaded = () => {
   const [isLoaded, setIsLoaded] = useRecoilState(loadedAtom);
 
   useEffect(() => {
-    if (!isLoaded) {
-      const timeout = setTimeout(() => {
-        // setDocumentReady(true);
-        setIsLoaded(true);
-      }, 3000);
-      return () => clearTimeout(timeout);
+    const item = localStorage.getItem("loaded");
+
+    if (!item) {
+      if (!isLoaded) {
+        const timeout = setTimeout(() => {
+          setIsLoaded(true);
+          localStorage.setItem("loaded", "true");
+        }, 5000);
+        return () => clearTimeout(timeout);
+      }
+    } else {
+      setIsLoaded(true);
     }
   }, []);
 

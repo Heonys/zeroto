@@ -2,8 +2,13 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    minimumCacheTTL: 86400,
-    domains: ["avatars.githubusercontent.com"],
+    minimumCacheTTL: 36400,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+    ],
   },
   headers: async () => {
     return [
