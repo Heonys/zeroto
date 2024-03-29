@@ -55,6 +55,7 @@ const HeroMotion = () => {
       <div className="sticky top-0 flex justify-between items-center">
         <div className="relative left-[7%] z-[100] text-white flex flex-col space-y-[2.5vh]">
           <div className="font-semibold text-[2.5vw] max-w-[50vw] leading-tight scale-125 translate-x-[3vw]">
+            {isLoaded ? "true" : "false"}
             <div>Over 100 million developers call GitHub home</div>
           </div>
           <div className="text-[1.1vw] font-thin max-w-[50vw]">
