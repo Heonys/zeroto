@@ -1,15 +1,16 @@
 "use client";
-import Image from "next/image";
 import {
   motion,
   useMotionValueEvent,
   useScroll,
   useTransform,
 } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import LoadingSpinner from "@/app/components/LoadingSpinner";
 import { useSession } from "next-auth/react";
 import HeroButtonGroup from "./HeroButtonGroup";
+import { getCldImageUrl } from "next-cloudinary";
+import Image from "next/image";
 import useLoaded from "@/hooks/useLoaded";
 
 const HeroMotion = () => {
@@ -19,6 +20,20 @@ const HeroMotion = () => {
   const { status } = useSession();
   const totalRatio = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
   const { isLoaded } = useLoaded();
+  const [images, setImages] = useState<any[]>([]);
+
+  const preloadImages = () => {
+    for (let i = 1; i < 81; i++) {
+      const url = getCldImageUrl({
+        src: `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/v1711725900/${i}.webp`,
+      });
+      setImages((prev) => [...prev, url]);
+    }
+  };
+
+  useEffect(() => {
+    preloadImages();
+  }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     setCurrentIndex(Math.round(totalRatio.get() * 79) + 1);
@@ -51,12 +66,12 @@ const HeroMotion = () => {
         </div>
         <motion.div className="overflow-hidden ">
           <Image
-            src={`/images/${currentIndex}.webp`}
+            width="960"
+            height="600"
+            src={images[currentIndex - 1]}
             layout="responsive"
-            width={900}
-            height={675}
-            alt={`octocat${currentIndex}`}
             className="translate-x-[4vw] translate-y-[5vh] z-50"
+            alt={`octocat${currentIndex}`}
             priority={true}
             ref={ref}
           />

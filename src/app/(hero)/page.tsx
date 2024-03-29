@@ -1,5 +1,9 @@
+import dynamic from "next/dynamic";
 import SpaceMotion from "./_components/SpaceMotion";
-import HeroMotion from "./_components/HeroMotion";
+
+const HeroMotion = dynamic(() => import("./_components/HeroMotion"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
