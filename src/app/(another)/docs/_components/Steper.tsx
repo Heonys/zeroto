@@ -1,18 +1,17 @@
 import { Flex, Separator } from "@radix-ui/themes";
-import { StaticImageData } from "next/image";
 import SteperImage from "./SteperImage";
 
 type Props = {
   stepIcon: React.ReactNode;
   title: string;
   header: string;
-  image: StaticImageData;
+  image: string;
   description: React.ReactNode;
 };
 
 const Steper = ({ stepIcon, title, header, description, image }: Props) => {
   return (
-    <Flex justify="center" gap="9" className="m-[2vh]">
+    <div className="flex justify-center m-[2vh] space-x-[5vw]">
       <Flex gap="2" className="w-[30vw]">
         <Flex direction="column" align="center" gap="2">
           {stepIcon}
@@ -25,7 +24,7 @@ const Steper = ({ stepIcon, title, header, description, image }: Props) => {
         </Flex>
       </Flex>
       <SteperImage image={image} />
-    </Flex>
+    </div>
   );
 };
 

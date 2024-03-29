@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { SpaceImage, StarImage } from "@/asset/image";
+import { spaceImage, starImage } from "@/asset/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
@@ -19,13 +19,26 @@ const MotionTest = () => {
     <div className="h-[250vh]">
       <div className="text-white overflow-hidden h-full relative" ref={ref}>
         <motion.div style={{ scale: spaceScale, y: imagePositionY, opacity }}>
-          <Image src={SpaceImage} alt="space" />
+          <Image
+            src={spaceImage}
+            alt="space"
+            layout="responsive"
+            width="960"
+            height="600"
+          />
         </motion.div>
         <motion.div
           style={{ scale: starScale, y: imagePositionY }}
           className="absolute top-0 left-0 z-50 w-full"
         >
-          <Image src={StarImage} alt="stars" className="w-full" />
+          <Image
+            src={starImage}
+            alt="stars"
+            layout="responsive"
+            width="960"
+            height="600"
+            className="w-full"
+          />
         </motion.div>
         <motion.h1
           style={{ scale: textScale, opacity, y: textPositionY }}

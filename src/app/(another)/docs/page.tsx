@@ -1,7 +1,8 @@
 import { NumberIcon1, NumberIcon2, NumberIcon3, NumberIcon4 } from "@/app/icon";
 import Steper from "./_components/Steper";
 import { docsImage1, docsImage2, docsImage3, docsImage4 } from "@/asset/image";
-import { Badge, Blockquote, Flex } from "@radix-ui/themes";
+import { Blockquote, Flex } from "@radix-ui/themes";
+import Badge from "./_components/Badge";
 
 const DocumentPage = () => {
   return (
@@ -18,19 +19,13 @@ const DocumentPage = () => {
               대시보드 및 사용자 북마크탭이 활성화 됩니다.
             </div>
             <Blockquote>
-              <div className="leading-7">
+              <div>
                 <span>해당 어플리케이션은</span>
-                <Badge color="orange" radius="large">
-                  1536 x 864
-                </Badge>
+                <Badge text="1536 x 864" color="orange" />
                 <span>{`해상도에서 개발되었으며,`}</span>
-                <Badge color="orange" radius="large">
-                  1536 x 864
-                </Badge>
+                <Badge text="1536 x 864" color="orange" />
                 <span>부터</span>
-                <Badge color="blue" radius="large">
-                  1920 x 1080
-                </Badge>
+                <Badge text="1920 x 1080" color="blue" />
                 <span>해상도에 최적화 되어있습니다</span>
               </div>
             </Blockquote>
@@ -70,13 +65,9 @@ const DocumentPage = () => {
             </span>
             <Blockquote>
               <span>보여지는 모든 데이터는</span>
-              <Badge color="orange" radius="large">
-                Public
-              </Badge>
+              <Badge text="Public" color="orange" />
               <span>저장소 기준이며</span>
-              <Badge color="ruby" radius="large">
-                Issue
-              </Badge>
+              <Badge text="Issue" color="red" />
               <span>
                 의 경우 본인이 작성한 이슈가 아닌 본인의 저장소에 작성된 이슈의
                 총 개수 입니다

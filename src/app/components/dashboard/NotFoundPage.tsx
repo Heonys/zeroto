@@ -1,6 +1,6 @@
 import { Flex } from "@radix-ui/themes";
 import Image from "next/image";
-import { MessageImage, backgroundImage, octocatImage } from "@/asset/image";
+import { messageImage, backgroundImage, octocatImage } from "@/asset/image";
 
 const NotFoundLayout = () => {
   return (
@@ -14,7 +14,7 @@ const NotFoundLayout = () => {
         alt="Background"
         className="absolute w-full"
       />
-      <Image src={MessageImage} alt="Message" className="z-10" />
+      <Image src={messageImage} alt="Message" className="z-10" />
       <Image src={octocatImage} alt="githubimage" className="z-10" />
     </Flex>
   );

@@ -1,10 +1,10 @@
 "use client";
 import { CloseFillIcon } from "@/app/icon";
 import { Dialog } from "@radix-ui/themes";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 type Props = {
-  image: StaticImageData;
+  image: string;
 };
 
 const SteperImage = ({ image }: Props) => {
@@ -12,7 +12,14 @@ const SteperImage = ({ image }: Props) => {
     <Dialog.Root>
       <Dialog.Trigger>
         <div className="w-[35vw] rounded-2xl overflow-hidden scale-105">
-          <Image src={image} alt="search" className="object-cover" />
+          <Image
+            src={image}
+            alt="search"
+            className="object-cover"
+            layout="responsive"
+            width="960"
+            height="600"
+          />
         </div>
       </Dialog.Trigger>
       <Dialog.Content
@@ -30,6 +37,9 @@ const SteperImage = ({ image }: Props) => {
             src={image}
             alt="search"
             className="object-cover w-full h-full"
+            layout="responsive"
+            width="960"
+            height="600"
           />
         </Dialog.Description>
 
