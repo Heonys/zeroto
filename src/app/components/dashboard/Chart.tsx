@@ -36,21 +36,21 @@ const Chart = ({ commits, issues, stars, pullRequests }: Props) => {
       fullMark: 100,
     },
     {
-      subject: "PullRequest",
+      subject: "Pull Request",
       A: total / 10 + pullRequests,
       fullMark: 100,
     },
   ];
 
   return (
-    <Card className="h-[40vh]">
+    <Card className="h-[30vh]">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart
-          outerRadius={90}
-          width={730}
+          // outerRadius={90}
+          width={530}
           height={250}
           data={data}
-          className="desktoplg:scale-125 desktopxl:scale-150 desktop2xl:scale-[1.7]"
+          className="desktopxl:scale-[1.1] desktop2xl:scale-[1.2]"
         >
           <PolarGrid />
           <PolarAngleAxis dataKey="subject" />

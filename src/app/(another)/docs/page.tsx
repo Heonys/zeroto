@@ -1,6 +1,6 @@
 import { NumberIcon1, NumberIcon2, NumberIcon3, NumberIcon4 } from "@/app/icon";
 import Steper from "./_components/Steper";
-import { docsImage1, docsImage2, docsImage3, docsImage4 } from "@/asset/image";
+import { docsImage1, docsImage2, docsImage3, docsImage5 } from "@/asset/image";
 import { Blockquote, Flex } from "@radix-ui/themes";
 import Badge from "./_components/Badge";
 
@@ -54,7 +54,7 @@ const DocumentPage = () => {
       />
       <Steper
         stepIcon={<NumberIcon3 size={"2.5vw"} />}
-        image={docsImage4}
+        image={docsImage5}
         title="Visualize your GitHub"
         header="자신의 깃허브 프로필을을 확인해보세요."
         description={
@@ -66,7 +66,7 @@ const DocumentPage = () => {
             <Blockquote>
               <span>보여지는 모든 데이터는</span>
               <Badge text="Public" color="orange" />
-              <span>저장소 기준 입니다</span>
+              <span>저장소 기준 이며, 최대 100개의 저장소까지 보여집니다</span>
             </Blockquote>
           </Flex>
         }

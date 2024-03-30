@@ -3,7 +3,7 @@ import Image from "next/image";
 import { PeopleIcon, CalendarIcon, UpdateIcon, GithubIcon } from "../icon";
 import Chart from "./dashboard/Chart";
 import { Flex, Grid } from "@radix-ui/themes";
-import IssueSummary from "./dashboard/Summary";
+import Summary from "./dashboard/Summary";
 import RepositoryGrid from "./dashboard/RepositoryGrid";
 import Graph from "./dashboard/Graph";
 import Link from "next/link";
@@ -11,15 +11,25 @@ import { format } from "timeago.js";
 import RepositoryGridSkeleton from "./dashboard/RepositoryGridSkeleton";
 import LikesButton from "./dashboard/LikesButton";
 import type { Repository, UserStats } from "@/octokit/fetcher";
+import SummarySecond from "./dashboard/SummarySecond";
 
 type Props = {
   me: boolean;
   isLogin: boolean;
   user?: UserStats;
   repos?: Repository[];
+  contributaion: number;
+  streak: number;
 };
 
-const Dashboard = ({ me, user, repos, isLogin }: Props) => {
+const Dashboard = ({
+  me,
+  user,
+  repos,
+  isLogin,
+  contributaion,
+  streak,
+}: Props) => {
   const register = {
     commits: user!.commits,
     stars: user!.totalStars,
@@ -78,10 +88,15 @@ const Dashboard = ({ me, user, repos, isLogin }: Props) => {
         </div>
       </div>
 
-      <div className="relative left-[23vw] w-[69vw] ">
+      <div className="relative left-[23vw] w-[69vw]">
         <Grid columns="2" gap="5">
-          <Flex direction="column" gap="5">
-            <IssueSummary {...register} />
+          <Flex direction="column" gap="3">
+            <Summary {...register} />
+            <SummarySecond
+              contributions={contributaion}
+              streak={streak}
+              create_at={user!.created_at}
+            />
             <Chart {...register} />
           </Flex>
 

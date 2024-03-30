@@ -1,5 +1,11 @@
 import { fetcher } from "@/octokit/octokit";
-import { statsQuery, repositoryQuery } from "./query";
+import {
+  statsQuery,
+  repositoryQuery,
+  totalCommitQuery,
+  contributionCalendarQuery,
+  userInfoQuery,
+} from "./query";
 
 export type UserStats = {
   avatar_url: string;
@@ -75,6 +81,45 @@ export const getRepos = (username: string) => {
         const edges = data.repositories.edges;
         const repos: Repository[] = edges.map((repo: any) => repo.node);
         resolve(repos);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
+export const getUserInfo = (username: string) => {
+  return new Promise((resolve, reject) => {
+    fetcher(userInfoQuery, username)
+      .then((response: any) => {
+        const data = response.user;
+        resolve(data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
+export const getTotalCommit = (username: string, from: string, to: string) => {
+  return new Promise((resolve, reject) => {
+    fetcher(totalCommitQuery, username, from, to)
+      .then((response: any) => {
+        const data = response.user;
+        resolve(data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
+export const getCalendar = (username: string) => {
+  return new Promise((resolve, reject) => {
+    fetcher(contributionCalendarQuery, username)
+      .then((response: any) => {
+        const data = response.user;
+        resolve(data);
       })
       .catch((error) => {
         reject(error);

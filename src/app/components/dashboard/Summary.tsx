@@ -8,7 +8,7 @@ type Props = {
   pullRequests: number;
 };
 
-const IssueSummary = ({ commits, stars, issues, pullRequests }: Props) => {
+const Summary = ({ commits, stars, issues, pullRequests }: Props) => {
   const statuses: {
     label: string;
     value: number;
@@ -55,4 +55,4 @@ const IssueSummary = ({ commits, stars, issues, pullRequests }: Props) => {
   );
 };
 
-export default IssueSummary;
+export default Summary;

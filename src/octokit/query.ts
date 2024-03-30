@@ -82,3 +82,60 @@ query searchUserRepositories($login: String!) {
   }
 }
 `;
+
+export const totalCommitQuery = `
+query userInfo($login: String!, $from: DateTime!, $to: DateTime!) {
+  user(login: $login) {
+    contributionsCollection(from: $from, to: $to) {
+      totalCommitContributions
+      totalIssueContributions
+      totalPullRequestContributions
+      totalPullRequestReviewContributions
+      totalRepositoryContributions
+    }
+  }
+}
+`;
+
+export const contributionCalendarQuery = `
+query userInfo($login: String!) {
+    user(login: $login) {
+      login
+      contributionsCollection {
+        contributionCalendar {
+          weeks {
+            contributionDays {
+              contributionLevel
+              date
+              contributionCount
+            }
+          }
+        }
+        totalCommitContributions
+      }
+    }
+  }`;
+
+export const userInfoQuery = `
+query userInfo($login: String!) {
+    user(login: $login) {
+      login
+      avatarUrl(size: 200)
+      bio
+      company
+      id
+      isBountyHunter
+      isCampusExpert
+      isDeveloperProgramMember
+      isEmployee
+      isFollowingViewer
+      isGitHubStar
+      isHireable
+      location
+      name
+      twitterUsername
+      websiteUrl
+      email
+    }
+  }
+`;

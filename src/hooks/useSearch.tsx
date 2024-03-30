@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useSetRecoilState } from "recoil";
 import { userAddSelector } from "@/atom/userAtom";
 import type { UserStats, Repository } from "@/octokit/fetcher";
+import { getStreak, getTotalContributions } from "@/api/github";
 
 const useSearch = (username: string) => {
   const setSearch = useSetRecoilState(userAddSelector);
@@ -30,6 +31,19 @@ const useSearch = (username: string) => {
     },
   });
 
+  const userContributionQuery = useQuery({
+    enabled: !!userQuery.data,
+    queryKey: [username, "contributation"],
+    queryFn: () =>
+      getTotalContributions(userQuery.data!.login, userQuery.data!.created_at),
+  });
+
+  const userStreak = useQuery({
+    enabled: !!userQuery.data,
+    queryKey: [username, "streak"],
+    queryFn: () => getStreak(userQuery.data!.login),
+  });
+
   const repositoryQuery = useQuery<Repository[]>({
     enabled: !!username,
     queryKey: ["repos", username],
@@ -46,7 +60,7 @@ const useSearch = (username: string) => {
     },
   });
 
-  return { userQuery, repositoryQuery };
+  return { userQuery, repositoryQuery, userContributionQuery, userStreak };
 };
 
 export default useSearch;

@@ -1,4 +1,6 @@
+import { getTotalCommit, getCalendar } from "@/octokit/fetcher";
 import { GtihubCommit } from "@/types/user";
+import { OneYearByFromto } from "@/util/common";
 
 const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
 const config = {
@@ -87,4 +89,44 @@ export async function getFollowByUsername(username: string) {
   const followers = await getFollowersByUsername(username);
 
   return { followers, followings };
+}
+
+export async function getTotalContributions(
+  username: string,
+  create_at: string,
+) {
+  const fromtoArray = OneYearByFromto(create_at);
+  const allContributions: any = (
+    await Promise.allSettled(
+      fromtoArray.map(({ from, to }) => {
+        return getTotalCommit(username, from, to);
+      }),
+    )
+  ).filter((v) => v.status === "fulfilled");
+
+  return allContributions
+    .map((v: any) => {
+      return Object.values<number>(v?.value.contributionsCollection).reduce(
+        (acc, cur) => acc + cur,
+        0,
+      );
+    })
+    .reduce((acc: number, cur: number) => acc + cur, 0);
+}
+
+export async function getStreak(username: string) {
+  const data: any = await getCalendar(username);
+
+  const flatted: any[] = data.contributionsCollection.contributionCalendar.weeks
+    .flat()
+    .map((v: any) => v.contributionDays)
+    .flat();
+
+  return (
+    364 -
+    flatted.findLastIndex((v, i) => {
+      return i !== 364 && v.contributionLevel === "NONE";
+    }) -
+    1
+  );
 }

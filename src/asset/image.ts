@@ -13,4 +13,4 @@ export const github = getCldImageUrl({ src: `${path}/github.webp` });
 export const docsImage1 = getCldImageUrl({ src: `${path}/docs1.webp` });
 export const docsImage2 = getCldImageUrl({ src: `${path}/docs2.webp` });
 export const docsImage3 = getCldImageUrl({ src: `${path}/docs3.webp` });
-export const docsImage4 = getCldImageUrl({ src: `${path}/docs4.webp` });
+export const docsImage5 = getCldImageUrl({ src: `${path}/docs5.webp` });

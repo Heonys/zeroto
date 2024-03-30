@@ -27,6 +27,8 @@ export { CgCloseR as CloseRIcon } from "react-icons/cg";
 export { CgCloseO as CloseOIcon } from "react-icons/cg";
 export { RiCloseCircleFill as CloseFillIcon } from "react-icons/ri";
 export { GoGitPullRequest as PullRequestIcon } from "react-icons/go";
+export { BsFire as FireIcon } from "react-icons/bs";
+export { IoStatsChart as ChartIcon } from "react-icons/io5";
 
 export { TbSquareRoundedNumber1 as NumberIcon1 } from "react-icons/tb";
 export { TbSquareRoundedNumber2 as NumberIcon2 } from "react-icons/tb";

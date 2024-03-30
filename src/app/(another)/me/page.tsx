@@ -5,13 +5,24 @@ import LoadingSpinner from "@/app/components/LoadingSpinner";
 
 const MyDashboardPage = () => {
   const {
-    userQuery: { data: user, isLoading },
+    userQuery: { data: user },
+    userContributionQuery: { data: contributaion },
+    userStreak: { data: streak },
     repositoryQuery: { data },
   } = useMe();
 
-  if (isLoading) return <LoadingSpinner />;
+  if (!user || !contributaion || streak == null) return <LoadingSpinner />;
 
-  return <Dashboard isLogin={true} me={true} user={user} repos={data} />;
+  return (
+    <Dashboard
+      isLogin={true}
+      me={true}
+      user={user}
+      repos={data}
+      contributaion={contributaion}
+      streak={streak}
+    />
+  );
 };
 
 export default MyDashboardPage;

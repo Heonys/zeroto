@@ -32,7 +32,7 @@ const RepositoryGrid = ({ repositoryData }: Props) => {
     <div className="px-2 pt-2 max-h-[55vh] overflow-y-scroll overflow-x-hidden ">
       <Heading
         size="4"
-        mb="5"
+        mb="4"
         className="flex items-center gap-2 justify-between"
       >
         <div className="flex items-center text-[1.15vw]">

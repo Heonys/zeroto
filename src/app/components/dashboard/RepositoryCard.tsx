@@ -1,7 +1,8 @@
 import { Card, Flex } from "@radix-ui/themes";
 import Link from "next/link";
-import { StarIcon, ForkIcon } from "@/app/icon";
+import { StarIcon, ForkIcon, RepositoryIcon } from "@/app/icon";
 import RepositoryBadge from "./RepositoryBadge";
+import { numFormatter } from "@/util/common";
 
 type Props = {
   name: string;
@@ -26,7 +27,12 @@ const RepositoryCard = ({
   return (
     <Card size="1" className="mb-[1.5vh]">
       <Link href={html_url} target="_blank">
-        <div className="text-[1.02vw] font-semibold mb-1">{name}</div>
+        <Flex align="center" gap="2">
+          <RepositoryIcon size={"1.1vw"} />
+          <div className="text-[1.1vw] text-[#1067cf] font-semibold mb-1">
+            {name}
+          </div>
+        </Flex>
         <div className="text-[0.8vw] text-gray-600 mb-1">{description}</div>
         <Flex align="center" justify="between">
           <div className="text-[0.8vw]">
@@ -35,11 +41,15 @@ const RepositoryCard = ({
           <Flex gap="2" align="center">
             <Flex align="center">
               <StarIcon size={"1.1vw"} />
-              <div className="text-[0.9vw] font-semibold">{star}</div>
+              <div className="text-[0.9vw] font-semibold">
+                {numFormatter(star)}
+              </div>
             </Flex>
             <Flex align="center">
               <ForkIcon size={"1.1vw"} />
-              <div className="text-[0.9vw] font-semibold">{fork}</div>
+              <div className="text-[0.9vw] font-semibold">
+                {numFormatter(fork)}
+              </div>
             </Flex>
           </Flex>
         </Flex>

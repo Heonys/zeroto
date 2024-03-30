@@ -15,13 +15,15 @@ const SearchPage = () => {
   const loginedUser = session?.user;
 
   const {
-    userQuery: { data: user, isLoading, isError: isUserError },
+    userQuery: { data: user, isError: isUserError },
+    userContributionQuery: { data: contributaion },
+    userStreak: { data: streak },
     repositoryQuery: { data: repos },
   } = useSearch(username || "");
 
   if (!username) return <SearchAlert />;
-  if (isLoading) return <LoadingSpinner />;
   if (isUserError) return <NotFoundPage />;
+  if (!user || !contributaion || streak == null) return <LoadingSpinner />;
 
   return (
     <Dashboard
@@ -29,6 +31,8 @@ const SearchPage = () => {
       me={user?.login === loginedUser?.username ? true : false}
       user={user}
       repos={repos}
+      contributaion={contributaion}
+      streak={streak!}
     />
   );
 };
