@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import { PeopleIcon, CalendarIcon, UpdateIcon, GithubIcon } from "../icon";
-import type { Repos } from "@/hooks/useMe";
 import Chart from "./dashboard/Chart";
 import { Flex, Grid } from "@radix-ui/themes";
 import IssueSummary from "./dashboard/Summary";
@@ -9,27 +8,24 @@ import RepositoryGrid from "./dashboard/RepositoryGrid";
 import Graph from "./dashboard/Graph";
 import Link from "next/link";
 import { format } from "timeago.js";
-import { GithubURL } from "@/types/user";
 import RepositoryGridSkeleton from "./dashboard/RepositoryGridSkeleton";
 import LikesButton from "./dashboard/LikesButton";
+import type { Repository, UserStats } from "@/octokit/fetcher";
 
 type Props = {
   me: boolean;
   isLogin: boolean;
-  user?: GithubURL;
-  repos?: Repos;
+  user?: UserStats;
+  repos?: Repository[];
 };
 
 const Dashboard = ({ me, user, repos, isLogin }: Props) => {
-  const forkCount = repos?.repositoryData.reduce(
-    (acc, cur) => acc + cur.forks_count,
-    0,
-  );
-
-  const stargazersCount = repos?.repositoryData?.reduce(
-    (acc, cur) => acc + cur.stargazers_count,
-    0,
-  );
+  const register = {
+    commits: user!.commits,
+    stars: user!.totalStars,
+    issues: user!.issues,
+    pullRequests: user!.pullRequests,
+  };
 
   return (
     <div className="w-full h-full">
@@ -50,7 +46,7 @@ const Dashboard = ({ me, user, repos, isLogin }: Props) => {
         </div>
         <div className="pl-3 flex flex-col space-y-[0.6vh]">
           <h1 className="font-bold text-[1.5vw]">{user?.name}</h1>
-          <h2 className="text-gray-400 text-[1.2vw]">{user?.login}</h2>
+          <h2 className="text-gray-400 text-[1.2vw]">@{user?.login}</h2>
           <div className="flex space-x-3 items-center text-[1.1vw]">
             <PeopleIcon size={"1.2vw"} />
             <div>{user?.followers} followers</div>
@@ -85,22 +81,12 @@ const Dashboard = ({ me, user, repos, isLogin }: Props) => {
       <div className="relative left-[23vw] w-[69vw] ">
         <Grid columns="2" gap="5">
           <Flex direction="column" gap="5">
-            <IssueSummary
-              commit={repos?.commitCount || 0}
-              fork={forkCount || 0}
-              issue={repos?.issueCount || 0}
-              star={stargazersCount || 0}
-            />
-            <Chart
-              commit={repos?.commitCount || 0}
-              fork={forkCount || 0}
-              issue={repos?.issueCount || 0}
-              star={stargazersCount || 0}
-            />
+            <IssueSummary {...register} />
+            <Chart {...register} />
           </Flex>
 
-          {repos?.repositoryData.length! > 0 ? (
-            <RepositoryGrid repositoryData={repos?.repositoryData!} />
+          {repos?.length! > 0 ? (
+            <RepositoryGrid repositoryData={repos!} />
           ) : (
             <RepositoryGridSkeleton />
           )}

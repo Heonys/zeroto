@@ -2,7 +2,7 @@
 import useFollow from "@/hooks/useFollow";
 import FollowingCard from "./FollowingCard";
 import LoadingSpinner from "@/app/components/LoadingSpinner";
-import { Box, Flex, Tabs, Text } from "@radix-ui/themes";
+import { Flex, Tabs } from "@radix-ui/themes";
 import useLikes from "@/hooks/useLikes";
 import { StarIcon, GithubIcon } from "@/app/icon";
 

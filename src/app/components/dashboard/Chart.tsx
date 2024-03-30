@@ -10,34 +10,34 @@ import {
 } from "recharts";
 
 type Props = {
-  commit: number;
-  issue: number;
-  star: number;
-  fork: number;
+  commits: number;
+  stars: number;
+  issues: number;
+  pullRequests: number;
 };
 
-const Chart = ({ commit, issue, star, fork }: Props) => {
-  const total = commit + issue + star + fork;
+const Chart = ({ commits, issues, stars, pullRequests }: Props) => {
+  const total = commits + issues + stars + pullRequests;
 
   const data = [
     {
       subject: "Commit",
-      A: commit,
+      A: total / 10 + commits,
       fullMark: total,
     },
     {
       subject: "Issue",
-      A: total / 10 + issue,
+      A: total / 10 + issues,
       fullMark: 100,
     },
     {
       subject: "Star",
-      A: total / 10 + star,
+      A: total / 10 + stars,
       fullMark: 100,
     },
     {
-      subject: "Fork",
-      A: total / 10 + fork,
+      subject: "PullRequest",
+      A: total / 10 + pullRequests,
       fullMark: 100,
     },
   ];

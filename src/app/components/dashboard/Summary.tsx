@@ -1,38 +1,38 @@
-import { CommitIcon, AlertIcon, ForkIcon, StarIcon } from "@/app/icon";
-import { Card, Flex, Text } from "@radix-ui/themes";
+import { CommitIcon, AlertIcon, StarIcon, PullRequestIcon } from "@/app/icon";
+import { Card, Flex } from "@radix-ui/themes";
 
 type Props = {
-  commit: number;
-  issue: number;
-  star: number;
-  fork: number;
+  commits: number;
+  stars: number;
+  issues: number;
+  pullRequests: number;
 };
 
-const IssueSummary = ({ commit, issue, star, fork }: Props) => {
+const IssueSummary = ({ commits, stars, issues, pullRequests }: Props) => {
   const statuses: {
     label: string;
     value: number;
     icon: React.ReactNode;
   }[] = [
     {
-      label: "Commit",
-      value: commit,
+      label: "Commits",
+      value: commits,
       icon: <CommitIcon size={"1.5vw"} />,
     },
     {
       label: "Issue",
-      value: issue,
+      value: issues,
       icon: <AlertIcon size={"1.5vw"} />,
     },
     {
       label: "Star",
-      value: star,
+      value: stars,
       icon: <StarIcon size={"1.4vw"} />,
     },
     {
-      label: "Fork",
-      value: fork,
-      icon: <ForkIcon size={"1.5vw"} />,
+      label: "Pull Requests",
+      value: pullRequests,
+      icon: <PullRequestIcon size={"1.5vw"} />,
     },
   ];
 

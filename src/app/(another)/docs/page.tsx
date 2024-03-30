@@ -66,12 +66,7 @@ const DocumentPage = () => {
             <Blockquote>
               <span>보여지는 모든 데이터는</span>
               <Badge text="Public" color="orange" />
-              <span>저장소 기준이며</span>
-              <Badge text="Issue" color="red" />
-              <span>
-                의 경우 본인이 작성한 이슈가 아닌 본인의 저장소에 작성된 이슈의
-                총 개수 입니다
-              </span>
+              <span>저장소 기준 입니다</span>
             </Blockquote>
           </Flex>
         }

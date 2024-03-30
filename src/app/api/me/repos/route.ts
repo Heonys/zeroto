@@ -1,7 +1,7 @@
-import { getRepositorysByUsername } from "@/api/github";
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import authOption from "../../auth/[...nextauth]/authOptions";
+import { getRepos } from "@/octokit/fetcher";
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOption);
@@ -9,6 +9,6 @@ export async function GET(req: NextRequest) {
     return new Response("bad Request", { status: 400 });
   }
 
-  const data = await getRepositorysByUsername(session?.user.username!);
+  const data = await getRepos(session?.user.username!);
   return NextResponse.json(data);
 }

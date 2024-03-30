@@ -1,14 +1,12 @@
-import { GithubRepositorys, GithubURL } from "@/types/user";
 import { useQuery } from "@tanstack/react-query";
-import { Repos } from "./useMe";
-import { getCommitByURL, getIssueByURL } from "@/api/github";
 import { useSetRecoilState } from "recoil";
 import { userAddSelector } from "@/atom/userAtom";
+import type { UserStats, Repository } from "@/octokit/fetcher";
 
 const useSearch = (username: string) => {
   const setSearch = useSetRecoilState(userAddSelector);
 
-  const userQuery = useQuery<GithubURL>({
+  const userQuery = useQuery<UserStats>({
     enabled: !!username,
     queryKey: ["search", username],
     queryFn: async () => {
@@ -32,7 +30,7 @@ const useSearch = (username: string) => {
     },
   });
 
-  const repositoryQuery = useQuery<Repos>({
+  const repositoryQuery = useQuery<Repository[]>({
     enabled: !!username,
     queryKey: ["repos", username],
     queryFn: async () => {
@@ -42,27 +40,9 @@ const useSearch = (username: string) => {
         throw new Error("Network response was not ok");
       } else {
       }
-      const repositoryData: GithubRepositorys[] = await response.json();
+      const repositoryData: Repository[] = await response.json();
 
-      const commitCount = (
-        await Promise.all(
-          repositoryData.map(async (repo) => {
-            const data = await getCommitByURL(repo.commits_url);
-            return data.length || 0;
-          }),
-        )
-      ).reduce((acc, cur) => acc + +cur, 0);
-
-      const issueCount = (
-        await Promise.all(
-          repositoryData.map(async (repo) => {
-            const data = await getIssueByURL(repo.issues_url);
-            return data.length;
-          }),
-        )
-      ).reduce((acc, cur) => acc + +cur, 0);
-
-      return { repositoryData, commitCount, issueCount };
+      return repositoryData;
     },
   });
 

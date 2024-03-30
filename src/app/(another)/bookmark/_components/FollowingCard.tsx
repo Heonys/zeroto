@@ -1,5 +1,5 @@
 "use client";
-import { Avatar, Box, Flex, Text } from "@radix-ui/themes";
+import { Avatar, Box, Flex } from "@radix-ui/themes";
 import Link from "next/link";
 
 type Props = {

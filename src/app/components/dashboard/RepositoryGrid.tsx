@@ -1,20 +1,20 @@
 "use client";
 import { RepositoryIcon, SearchIcon } from "@/app/icon";
-import { GithubRepositorys } from "@/types/user";
 import { Heading, TextField } from "@radix-ui/themes";
 import RepositoryCard from "./RepositoryCard";
 import { useState } from "react";
 import useDebounce from "@/hooks/useDebounce";
+import { Repository } from "@/octokit/fetcher";
 
 type Props = {
-  repositoryData: GithubRepositorys[];
+  repositoryData: Repository[];
 };
 
 const RepositoryGrid = ({ repositoryData }: Props) => {
   const [keyword, setKeyword] = useState("");
   const debounceKeyword = useDebounce(keyword, 500);
 
-  const filterRepositories = (repos: GithubRepositorys[]) => {
+  const filterRepositories = (repos: Repository[]) => {
     return repos.filter((repo) =>
       repo.name.toLowerCase().includes(debounceKeyword.toLowerCase()),
     );
@@ -58,8 +58,12 @@ const RepositoryGrid = ({ repositoryData }: Props) => {
             key={repo.id}
             name={repo.name}
             description={repo.description}
-            language={repo.language}
-            html_url={repo.html_url}
+            language={repo.primaryLanguage?.name}
+            color={repo.primaryLanguage?.color}
+            html_url={repo.url}
+            star={repo.stargazers.totalCount}
+            issue={repo.issues.totalCount}
+            fork={repo.forks.totalCount}
           />
         );
       })}

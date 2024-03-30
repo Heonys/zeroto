@@ -1,6 +1,5 @@
 import { StarFillIcon, StarIcon } from "@/app/icon";
 import useLikes from "@/hooks/useLikes";
-import { Button } from "@radix-ui/themes";
 import LoadingSpinner from "../LoadingSpinner";
 
 type Props = {

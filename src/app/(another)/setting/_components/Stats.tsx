@@ -1,19 +1,18 @@
 "use client";
-import { octokit } from "@/util/octokit";
+import { useState } from "react";
 
 const Stats = () => {
-  const handleClick = async () => {
-    try {
-      const response = await octokit.repos.listForAuthenticatedUser();
-      console.log(response.data);
-    } catch (error: any) {
-      console.error("Error fetching repositories:", error.message);
-    }
-  };
+  const [name, setName] = useState("");
+
+  const handleClick = async () => {};
   return (
     <div>
       <button onClick={handleClick}>click</button>
-
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
       <div>dd</div>
     </div>
   );

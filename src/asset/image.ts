@@ -1,5 +1,4 @@
 import { getCldImageUrl } from "next-cloudinary";
-
 const path = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/v1711725900`;
 
 export const spaceImage = getCldImageUrl({ src: `${path}/space.webp` });
