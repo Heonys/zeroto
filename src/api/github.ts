@@ -122,11 +122,9 @@ export async function getStreak(username: string) {
     .map((v: any) => v.contributionDays)
     .flat();
 
-  return (
-    364 -
-    flatted.findLastIndex((v, i) => {
-      return i !== 364 && v.contributionLevel === "NONE";
-    }) -
-    1
-  );
+  const lastContribution = flatted.findLastIndex((v, i) => {
+    return i !== flatted.length - 1 && v.contributionLevel === "NONE";
+  });
+
+  return flatted.length - 1 - lastContribution;
 }

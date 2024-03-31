@@ -1,11 +1,11 @@
-import SpaceMotion from "./_components/SpaceMotion";
 import HeroMotion from "./_components/HeroMotion";
+import HeroSection from "./_components/HeroSection";
 
 export default function Home() {
   return (
     <>
+      <HeroSection />
       <HeroMotion />
-      <SpaceMotion />
     </>
   );
 }

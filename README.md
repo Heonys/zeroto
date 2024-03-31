@@ -25,4 +25,6 @@ Deployed by ▲Vercel
 - recharts
 - recoil
 - react-query
+- ocotokit/graphql
+- cloudinary
 

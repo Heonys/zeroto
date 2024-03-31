@@ -2,7 +2,7 @@ import RadioGroup from "./_components/RadioGroup";
 import Stats from "./_components/Stats";
 
 const SettingPage = () => {
-  return <Stats />;
+  return <RadioGroup />;
 };
 
 export default SettingPage;

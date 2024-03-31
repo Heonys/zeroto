@@ -18,7 +18,7 @@ const HeroMotion = () => {
   const ref = useRef<HTMLImageElement>(null);
   const { scrollYProgress } = useScroll();
   const { status } = useSession();
-  const totalRatio = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  const totalRatio = useTransform(scrollYProgress, [0.3, 1], [0, 1]);
   const { isLoaded } = useLoaded();
   const [images, setImages] = useState<any[]>([]);
 
@@ -51,7 +51,7 @@ const HeroMotion = () => {
   }
 
   return (
-    <div className="h-[200vh]">
+    <div className="h-[400vh]">
       <div className="sticky top-0 flex justify-between items-center">
         <div className="relative left-[7%] z-[100] text-white flex flex-col space-y-[2.5vh]">
           <div className="font-semibold text-[2.5vw] max-w-[50vw] leading-tight scale-125 translate-x-[3vw]">
