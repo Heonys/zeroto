@@ -31,8 +31,7 @@ export default Navbar;
 
 const NavLinks = () => {
   const currentPath = usePathname();
-
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   const links = [
     { label: <HomeIcon size={"1.8vw"} />, href: "/" },
@@ -52,14 +51,14 @@ const NavLinks = () => {
       {links.map(({ href, label }) => {
         return (
           <Link key={href} href={href}>
-            <div
+            <button
               className={`
             rounded-full border-gray-300 border p-[0.5vw]
             ${href === currentPath ? "bg-[#d82e5a] text-white" : "bg-white text-zinc-900"}
             `}
             >
               {label}
-            </div>
+            </button>
           </Link>
         );
       })}

@@ -42,7 +42,7 @@ const DocumentPage = () => {
           <Flex direction="column" gap="3">
             <div>
               사용자 검색 페이지 또는 화면 상단에서 빠른 검색이 가능하며, 최근
-              검색된 5명의 유저를 확인 가능합니다.
+              검색한 5명의 프로필로 빠른 이동이 가능합니다
             </div>
             <Blockquote>
               <div>
@@ -56,17 +56,30 @@ const DocumentPage = () => {
         stepIcon={<NumberIcon3 size={"2.5vw"} />}
         image={docsImage5}
         title="Visualize your GitHub"
-        header="자신의 깃허브 프로필을을 확인해보세요."
+        header="자신 또는 친구의 프로필을 확인해보세요."
         description={
           <Flex direction="column" gap="3">
             <span>
-              깃허브 프로필을 시각화 하여 간단한 분석 및 차트를 한눈에
-              보여줍니다.
+              <span>
+                깃허브 프로필을 시각화 하고 간단한 분석 및 차트를 한눈에
+                보여줍니다.
+              </span>
+              <Badge text="Commit" color="red" />
+              <Badge text="Issue" color="red" />
+              <Badge text="Star" color="red" />
+              <Badge text="PR" color="red" />
+              <span>
+                의 최근 1년간의 데이터와 더불어 전체 기여 수와 현재 연속 커밋
+                수를 확인할 수 있습니다.
+              </span>
             </span>
             <Blockquote>
-              <span>보여지는 모든 데이터는</span>
+              <span>보여지는 모든 저장소는</span>
               <Badge text="Public" color="orange" />
-              <span>저장소 기준 이며, 최대 100개의 저장소까지 보여집니다</span>
+              <span>
+                저장소 기준 이며, 업데이트된 날짜순으로 최대 100개의 저장소까지
+                보여집니다
+              </span>
             </Blockquote>
           </Flex>
         }

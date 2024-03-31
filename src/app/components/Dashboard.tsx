@@ -81,6 +81,7 @@ const Dashboard = ({
             <Link
               href={user?.html_url!}
               className="underline decoration-1 font-medium"
+              target="_blank"
             >
               View profile on GitHub
             </Link>

@@ -126,5 +126,5 @@ export async function getStreak(username: string) {
     return i !== flatted.length - 1 && v.contributionLevel === "NONE";
   });
 
-  return flatted.length - 1 - lastContribution;
+  return flatted.length - 1 - lastContribution - 1;
 }

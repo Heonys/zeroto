@@ -13,9 +13,24 @@ const NotFoundLayout = () => {
         src={backgroundImage}
         alt="Background"
         className="absolute w-full"
+        layout="responsive"
+        width="960"
+        height="600"
       />
-      <Image src={messageImage} alt="Message" className="z-10" />
-      <Image src={octocatImage} alt="githubimage" className="z-10" />
+      <Image
+        src={messageImage}
+        alt="Message"
+        className="z-10"
+        width="271"
+        height="249"
+      />
+      <Image
+        src={octocatImage}
+        alt="githubimage"
+        className="z-10"
+        width="188"
+        height="230"
+      />
     </Flex>
   );
 };
