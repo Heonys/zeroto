@@ -1,4 +1,8 @@
-import type { Repository, UserStats } from "@/octokit/fetcher";
+import {
+  getCalendar,
+  type Repository,
+  type UserStats,
+} from "@/octokit/fetcher";
 import { useQuery } from "@tanstack/react-query";
 import { getTotalContributions, getStreak } from "@/api/github";
 
@@ -26,7 +30,19 @@ const useMe = () => {
     queryFn: async () => fetch("/api/me/repos").then((res) => res.json()),
   });
 
-  return { userQuery, repositoryQuery, userContributionQuery, userStreak };
+  const calendarQuery = useQuery<any>({
+    enabled: !!userQuery.data,
+    queryKey: ["me", "calendar"],
+    queryFn: () => getCalendar(userQuery.data!.login),
+  });
+
+  return {
+    userQuery,
+    repositoryQuery,
+    userContributionQuery,
+    userStreak,
+    calendarQuery,
+  };
 };
 
 export default useMe;

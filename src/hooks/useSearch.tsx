@@ -1,7 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { useSetRecoilState } from "recoil";
 import { userAddSelector } from "@/atom/userAtom";
-import type { UserStats, Repository } from "@/octokit/fetcher";
+import {
+  type UserStats,
+  type Repository,
+  getCalendar,
+} from "@/octokit/fetcher";
 import { getStreak, getTotalContributions } from "@/api/github";
 
 const useSearch = (username: string) => {
@@ -60,7 +64,19 @@ const useSearch = (username: string) => {
     },
   });
 
-  return { userQuery, repositoryQuery, userContributionQuery, userStreak };
+  const calendarQuery = useQuery<any>({
+    enabled: !!userQuery.data,
+    queryKey: [username, "calendar"],
+    queryFn: () => getCalendar(userQuery.data!.login),
+  });
+
+  return {
+    userQuery,
+    repositoryQuery,
+    userContributionQuery,
+    userStreak,
+    calendarQuery,
+  };
 };
 
 export default useSearch;

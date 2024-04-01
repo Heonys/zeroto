@@ -6,6 +6,7 @@ import SearchAlert from "@/app/components/SearchAlert";
 import LoadingSpinner from "@/app/components/LoadingSpinner";
 import { useSession } from "next-auth/react";
 import NotFoundPage from "@/app/not-found";
+import { Weeks } from "@/types/user";
 
 const SearchPage = () => {
   const searchParams = useSearchParams();
@@ -18,12 +19,17 @@ const SearchPage = () => {
     userQuery: { data: user, isError: isUserError },
     userContributionQuery: { data: contributaion },
     userStreak: { data: streak },
+    calendarQuery: { data: calendar },
     repositoryQuery: { data: repos },
   } = useSearch(username || "");
 
   if (!username) return <SearchAlert />;
   if (isUserError) return <NotFoundPage />;
-  if (!user || !contributaion || streak == null) return <LoadingSpinner />;
+  if (!user || !calendar || !contributaion || streak == null)
+    return <LoadingSpinner />;
+
+  const weeks: Weeks[] =
+    calendar.contributionsCollection.contributionCalendar.weeks;
 
   return (
     <Dashboard
@@ -33,6 +39,7 @@ const SearchPage = () => {
       repos={repos}
       contributaion={contributaion}
       streak={streak!}
+      weeks={weeks}
     />
   );
 };

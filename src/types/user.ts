@@ -239,3 +239,18 @@ export type AuthType = {
   email: string;
   likes: LikesType[];
 };
+
+export interface Weeks {
+  contributionDays: ContributionCount[];
+}
+
+export interface ContributionCount {
+  contributionCount: number;
+  contributionLevel:
+    | "NONE"
+    | "FIRST_QUARTILE"
+    | "SECOND_QUARTILE"
+    | "THIRD_QUARTILE"
+    | "FOURTH_QUARTILE";
+  date: string;
+}

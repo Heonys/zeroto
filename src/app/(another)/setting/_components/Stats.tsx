@@ -1,25 +1,13 @@
 "use client";
-import { getUserInfo } from "@/octokit/fetcher";
-import { useState } from "react";
+import { getCalendar } from "@/octokit/fetcher";
+import Calendar from "../../../components/dashboard/Calendar";
+import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "@/app/components/LoadingSpinner";
+import { Weeks } from "@/types/user";
 
 const Stats = () => {
-  const [name, setName] = useState("");
-
-  const handleClick = async () => {
-    const data = await getUserInfo(name);
-    console.log(data);
-  };
-  return (
-    <div>
-      <button onClick={handleClick}>click</button>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <div>dd</div>
-    </div>
-  );
+  return null;
+  // return <div>{weeks && <Calendar weeks={weeks} />}</div>;
 };
 
 export default Stats;

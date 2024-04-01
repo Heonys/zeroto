@@ -12,6 +12,7 @@ import RepositoryGridSkeleton from "./dashboard/RepositoryGridSkeleton";
 import LikesButton from "./dashboard/LikesButton";
 import type { Repository, UserStats } from "@/octokit/fetcher";
 import SummarySecond from "./dashboard/SummarySecond";
+import { Weeks } from "@/types/user";
 
 type Props = {
   me: boolean;
@@ -20,6 +21,7 @@ type Props = {
   repos?: Repository[];
   contributaion: number;
   streak: number;
+  weeks: Weeks[];
 };
 
 const Dashboard = ({
@@ -29,6 +31,7 @@ const Dashboard = ({
   isLogin,
   contributaion,
   streak,
+  weeks,
 }: Props) => {
   const register = {
     commits: user!.commits,
@@ -108,7 +111,7 @@ const Dashboard = ({
           )}
         </Grid>
 
-        <Graph username={user?.login || ""} />
+        <Graph weeks={weeks} username={user?.login || ""} />
       </div>
     </div>
   );
