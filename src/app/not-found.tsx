@@ -1,4 +1,3 @@
-"use client";
 import NotFoundLayout from "./components/dashboard/NotFoundPage";
 
 const NotFoundPage = () => {

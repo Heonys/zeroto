@@ -86,7 +86,6 @@ export default function HeroSection() {
       >
         <div className="relative z-[100] text-white flex flex-col space-y-[2.5vh] ">
           <div className="font-semibold text-[3vw] max-w-[50vw] leading-tight">
-            {/* <div>Where the world builds software</div> */}
             <div>From Zero to Github</div>
             <div>GitHub Profile Simplified</div>
           </div>

@@ -17,6 +17,19 @@ const notoSansKr = Noto_Sans_KR({
 export const metadata: Metadata = {
   title: "Zeroto",
   description: "From zero to Github",
+  openGraph: {
+    type: "website",
+    title: "Zeroto",
+    url: "https://zeroto-three.vercel.app",
+    description: "From Zero to Github",
+    siteName: "Zeroto",
+    images: [
+      {
+        url: `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/v1711725900/76.webp`,
+        alt: "OG:image",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

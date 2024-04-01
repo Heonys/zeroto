@@ -13,7 +13,7 @@ import { getCldImageUrl } from "next-cloudinary";
 import Image from "next/image";
 import useLoaded from "@/hooks/useLoaded";
 
-const HeroMotion = () => {
+const HeroMotionSection = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const ref = useRef<HTMLImageElement>(null);
   const { scrollYProgress } = useScroll();
@@ -81,4 +81,4 @@ const HeroMotion = () => {
   );
 };
 
-export default HeroMotion;
+export default HeroMotionSection;

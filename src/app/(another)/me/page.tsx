@@ -16,8 +16,6 @@ const MyDashboardPage = () => {
   if (!user || !calendar || !contributaion || streak == null)
     return <LoadingSpinner />;
 
-  console.log("calendar :", calendar);
-
   const weeks: Weeks[] =
     calendar.contributionsCollection.contributionCalendar.weeks;
 

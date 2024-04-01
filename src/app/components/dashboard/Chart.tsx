@@ -46,7 +46,6 @@ const Chart = ({ commits, issues, stars, pullRequests }: Props) => {
     <Card className="h-[30vh]">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart
-          // outerRadius={90}
           width={530}
           height={250}
           data={data}
